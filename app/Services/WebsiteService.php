@@ -12,13 +12,15 @@ class WebsiteService
         $this->base_url = config('app.API_BASE_URL');
         $this->token = config('app.API_TOKEN');
         $this->config = Cache::remember('config', now()->addMinutes(1), function () {
-            return $this->fetchConfig();
+            // return $this->fetchConfig();
+            $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'config');
+            return (object) $response->json()['data']; 
         });
     }
 
     function fetchConfig() {
-        $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'config');
-        return (object) $response->json()['data']; 
+        return $this->config; 
+
     }
 
     function product($slug) {
@@ -35,8 +37,10 @@ class WebsiteService
 
     function fetchMenu()
     {
-        $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'menus');
-        return $response->json()['data']; 
+        return Cache::remember('menu', now()->addMinutes(1), function () {
+            $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'menus');
+            return $response->json()['data']; 
+        });
     }
 
     function fetchCategoryProduct($category_slug)
