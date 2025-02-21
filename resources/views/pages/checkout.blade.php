@@ -1,5 +1,9 @@
 @extends('master')
-@section('title', 'n')
+@section('title', $config->company_name .' | Checkout')
+@section('description', 'checkout page')
+@section('image', $config->logo)
+@section('url', url()->full())
+@section('keywords', 'Ecommerce automation')
 
 @section('main-section')
 

@@ -27,7 +27,7 @@
             <div class="cardCategory wow fadeInUp">
               <div class="cardImage">
                 <a href="{{route('category', $category['slug'])}}">
-                  <img src="{{asset('assets/imgs/page/homepage3/cat3.png')}}" alt="{{$category['name']}}" />
+                  <img src="{{$category['image']}}" alt="{{$category['name']}}" />
                 </a>
               </div>
               <div class="cardInfo">

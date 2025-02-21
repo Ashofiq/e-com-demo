@@ -1,5 +1,9 @@
 @extends('master')
 @section('title', $product->name)
+@section('description', $product->description)
+@section('image', $product->image)
+@section('url', url()->full())
+@section('keywords', 'Ecommerce automation')
 
 @section('main-section')
 <style>

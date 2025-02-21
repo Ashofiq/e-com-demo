@@ -10,3 +10,4 @@ Route::get('products', [WebsiteController::class, 'products'])->name('products')
 Route::get('category/{slug}', [WebsiteController::class, 'productByCategory'])->name('category');
 Route::get('checkout', [WebsiteController::class, 'checkout'])->name('checkout');
 Route::post('order', [WebsiteController::class, 'order'])->name('order');
+Route::get('confirm', [WebsiteController::class, 'confirm'])->name('confirm');

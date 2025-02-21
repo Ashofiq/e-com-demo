@@ -14,7 +14,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
+    'description' => 'Ecommerce',
+        
     'API_BASE_URL' => env('API_BASE_URL'),
     'API_TOKEN'    => env('TOKEN'),
 

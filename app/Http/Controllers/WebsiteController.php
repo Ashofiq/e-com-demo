@@ -22,16 +22,26 @@ class WebsiteController extends Controller
             return $this->fetchProduct();
         });
 
+        $sliders = Cache::remember('slider', now()->addMinutes(1), function () {
+            return $this->fetchSlider();
+        });
+
         $categories = Cache::remember('category', now()->addMinutes(1), function () {
             return $this->fetchCategory();
         });
 
-        return view('pages.home', compact('products', 'categories', 'config'));
+        return view('pages.home', compact('products', 'categories', 'config', 'sliders'));
     }
 
     private function fetchProduct()
     {
         $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'latest-product');
+        return $response->json()['data']; 
+    }
+
+    private function fetchSlider()
+    {
+        $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'slider');
         return $response->json()['data']; 
     }
 
@@ -65,7 +75,11 @@ class WebsiteController extends Controller
     }
 
     function order(Request $request) {
-        return Http::withHeaders(['token' => $this->token])
-            ->post($this->base_url.'order', $request->all());
+        $order = Http::withHeaders(['token' => $this->token])
+            ->post($this->base_url.'order', $request->all())['data'];
+        return redirect()->route('confirm', ['order'=> $order['order_no']]);
+    }
+    function confirm(Request $request) {
+        return view('pages.confirm');
     }
 }

@@ -1,8 +1,10 @@
 @extends('master')
-@section('title', 'n')
-@section('description', )
-@section('image', '')
+@section('title', $config->company_name .' | Category')
+@section('description', 'Category list')
+@section('image', $config->logo)
 @section('url', url()->full())
+@section('keywords', 'Ecommerce automation')
+
 
 @section('main-section')
 <div class="container"> 
