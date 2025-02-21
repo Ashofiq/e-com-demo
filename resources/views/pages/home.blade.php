@@ -11,7 +11,7 @@
             
     @include('extras.category')
 
-    @include('extras.product')
+    {{-- @include('extras.product') --}}
 
     @include('extras.information')
 
