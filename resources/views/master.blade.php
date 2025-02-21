@@ -22,7 +22,7 @@
 
      <meta name="audience" content="Everyone">
      <meta name="robots" content="index, follow">
-     <link rel="shortcut icon" type="image/x-icon" href="assets/imgs/template/favicon.svg" />
+     <link rel="shortcut icon" type="image/x-icon" href="{{$config->logo}}" />
      <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" />
      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
      <script src="https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js" type="text/javascript"></script>
