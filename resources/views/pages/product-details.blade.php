@@ -14,137 +14,2159 @@
     }
 </style>
 
-<div class="section block-breadcrumb">
-    <div class="container"> 
-        <div class="breadcrumbs"> 
-            <ul> 
-                <li>  <a href="{{url('/')}}">Home  </a></li>
-                <li>  <a href="{{route('products')}}">Product  </a></li>
-                <li>  <a href="#">{{$product->name}} </a></li>
-            </ul>
+    <!-- breadcrumb__start -->
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="breadcrumb__title">
+                        <h1>Product </h1>
+                        <ul>
+                            <li>
+                                <a href="{{url('/')}}">Home </a>
+                            </li>
+                            <li class="color__blue">
+                               Product Details
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!-- breadcrumb__end -->
+
+
+
+<!-- single__product__start -->
+<div class="single__product sp_top_50 sp_bottom_80">
+<div class="container">
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12">
+            <div class="featurearea__details__img">
+
+                <div class="featurearea__big__img">
+                    <div class="featurearea__single__big__img">
+                        <img src="{{$product?->image}}" alt="{{$product?->name}}" />
+                    </div>
+                    {{-- <div class="featurearea__single__big__img">
+                        <img src="{{asset('/')}}frontend/img/product/grid__3.png" alt="Product Big Img" />
+                    </div>
+                    <div class="featurearea__single__big__img">
+                        <img src="{{asset('/')}}frontend/img/product/grid__5.png" alt="Product Big Img" />
+                    </div>
+                    <div class="featurearea__single__big__img">
+                        <img src="{{asset('/')}}frontend/img/product/grid__7.png" alt="Product Big Img" />
+                    </div>
+                    <div class="featurearea__single__big__img">
+                        <img src="{{asset('/')}}frontend/img/product/grid__9.png" alt="Product Big Img" />
+                    </div>
+                    <div class="featurearea__single__big__img">
+                        <img src="{{asset('/')}}frontend/img/product/grid__11.png" alt="Product Big Img" />
+                    </div>
+                    <div class="featurearea__single__big__img">
+                        <img src="{{asset('/')}}frontend/img/product/grid__13.png" alt="Product Big Img" />
+                    </div> --}}
+                </div>
+                {{-- <div class=" featurearea__thumb__img featurearea__thumb__img__slider__active slider__default__arrow">
+                    <div class="featurearea__single__thumb__img">
+                        <img src="{{asset('/')}}frontend/img/product/grid__1.png" alt="Product Big Img" />
+                    </div>
+                    <div class="featurearea__single__thumb__img">
+                        <img src="{{asset('/')}}frontend/img/product/grid__3.png" alt="Product Big Img" />
+                    </div>
+                    <div class="featurearea__single__thumb__img">
+                        <img src="{{asset('/')}}frontend/img/product/grid__5.png" alt="Product Big Img" />
+                    </div>
+                    <div class="featurearea__single__thumb__img">
+                        <img src="{{asset('/')}}frontend/img/product/grid__7.png" alt="Product Big Img" />
+                    </div>
+                    <div class="featurearea__single__thumb__img">
+                        <img src="{{asset('/')}}frontend/img/product/grid__9.png" alt="Product Big Img" />
+                    </div>
+                    <div class="featurearea__single__thumb__img">
+                        <img src="{{asset('/')}}frontend/img/product/grid__11.png" alt="Product Big Img" />
+                    </div>
+                    <div class="featurearea__single__thumb__img">
+                        <img src="{{asset('/')}}frontend/img/product/grid__13.png" alt="Product Big Img" />
+                    </div>
+                </div> --}}
+
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12">
+            <div class="single__product__wrap">
+                <div class="single__product__heding">
+                    <h2>{{$product->name}} </h2>
+                </div>
+                <div class="single__product__price">
+                    @if(isset($product->skus))
+                    <span>{{number_format($product->skus[0]['price'], 2)}}{{ $config->currency_symbol }}  </span> 
+                    @if (count($product->skus) > 1)
+                    -
+                <del> {{number_format(collect($product->skus)->max('price'), 2)}}{{ $config->currency_symbol }} </del>
+                    @endif
+                @endif
+                    <label>Save -25% </label>
+                </div>
+
+                <hr />
+
+
+                <div class="single__product__description">
+                    <p> {{ Str::limit($product->description, 100) }}  </p>
+                   
+                    </div>
+             
+                  <div class="single__product__eye">
+                    <div onload="startTime()">
+                      <img src="{{asset('/')}}frontend/img/eye/eye__1.webp" alt="live beacon" style="height:30px; margin-right:5px; padding-bottom: 0px;" />
+                      <span id="txt"><strong>14 </strong> people are viewing ____ right now. </span>
+                    </div>
+                  </div>
+                
+                  <div class="single__product__special__feature">
+                    @foreach ($product->skus as $sku)
+                    <ul onclick="clickVariant()">
+                        <li>
+                            <strong>SKU Code: </strong>
+                            <span class="variant__sku">{{ $sku['sku_code'] }}</span>
+                        </li>
+                        <li>
+                            <strong>SKU: </strong>
+                            <span class="variant__sku">{{ $sku['variant_name'] }}</span>
+                        </li>
+                        <li>
+                            <strong>SKU Price: </strong>
+                            <span class="variant__sku">{{ $sku['price'] }}</span>
+                        </li>
+                        <li>
+                            <strong>Image: </strong>
+                            <span class="variant__sku">
+                                {{ $sku['image'] ?? $product->image }}
+                            </span>
+                        </li>
+                    </ul>
+                    @endforeach
+                </div>
+                
+
+{{--                         
+                        <ul>
+                           
+                          <li class="product__variant__inventory">
+                            <strong class="inventory__title">Availability: </strong>
+                            <span class="variant__inventory">17 left in stock </span>
+                          </li>
+                         
+                            <li>
+                            <strong>SKU: </strong>
+                            <span class="variant__sku">{{$sku['sku_code']}} </span>
+                          </li>
+                          <li>
+                            <strong>Vendor: </strong> 
+                            <span>
+                              <a href="#">Vendor B </a>
+                            </span>
+                          </li>
+                          <li>
+                            <strong>Type: </strong> 
+                            <span>
+                              <a href="#">Type B </a>
+                            </span>
+                          </li>
+                        </ul>  --}}
+                  
+                      </div>
+
+                      <hr />
+                      {{-- <div class="single__product__swatch single__product__size">
+                        <span class="header">Size :  </span>
+                        <ul>
+                            <li><a href="#">x </a></li>
+                            <li><a href="#">xl </a></li>
+                            <li><a href="#">m </a></li>
+                            <li><a href="#">s </a></li>
+                        </ul>
+                      </div> --}}
+
+
+                      {{-- <div class="single__product__swatch d-flex flex-wrap align-items-center" data-option-index="1">
+                        <span class="header">Color :  </span>
+                       
+                            <div data-value="gold" class="swatch-element color gold available">
+                             
+                              <button class="label_bg_img" style="background-color: gold; ">
+                               
+                              </button>
+                             
+                            </div>
+                            <div data-value="gray" class="swatch-element color gray available">
+                             
+                              <button class="label_bg_img" style="background-color: gray; ">
+                               
+                              </button>
+                             
+                            </div>
+                            <div data-value="magenta" class="swatch-element color magenta available">
+                             
+                              <button class="label_bg_img" style="background-color: magenta; ">
+                               
+                              </button>
+                             
+                            </div>
+                            <div data-value="maroon" class="swatch-element color maroon available">
+                             
+                              <button class="label_bg_img" style="background-color: maroon; ">
+                               
+                              </button>
+                             
+                            </div>
+                            <div data-value="navy" class="swatch-element color navy available">
+                             
+                              <button class="label_bg_img" style="background-color: navy; ">
+                               
+                              </button>
+                             
+                            </div>
+                       
+                      </div> --}}
+
+                      <div class="single__product__quantity">
+                        <div class="qty-container">
+                            <button class="qty-btn-minus btn-qty" type="button">- </button>
+                            <input type="text" name="qty" value="1" class="input-qty" />
+                            <button class="qty-btn-plus btn-qty" type="button">+ </button>
+                        </div>
+                        <button class="default__button" onclick="addToCart()"><i class="fas fa-shopping-cart"></i> Add to cart </button>
+
+                        <button class="default__button black__button" onclick="addToCart('buy_now')" >Buy it now </button>
+                       
+                   
+                    </div>
+
+
+
+                    <div class="single__product__bottom__menu">
+                        <ul>
+                            <li>
+                            <a href="#" title="Add to wishlist">
+                         <span class="add__wishlist"><i class="far fa-heart"></i>  Add to ________ </span>
+                         </a>
+                        </li>
+                         <li>
+                            <a title="Add to compare" data-toggle="modal" href="#" class="compare" data-pid="b-n-badge-product">
+                              <i class="fas fa-exchange-alt"></i><span> Compare </span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" title="Ask a Question" data-toggle="modal">
+                              <i class="far fa-envelope"></i> Ask a Question
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" title="Size Chart" data-toggle="modal">
+                              <i class="far fa-chart-bar"></i> Size Chart
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <hr />
+
+                        <p class="single__product__car"> 
+                            <img src="{{asset('/')}}frontend/img/car/car.webp" height="25" alt="Delivery Date" />
+                           Estimated Delivery ____ :  <strong>09-  12 August, 2024. </strong>
+                        </p>
+                        <div class="single__return__menu">
+                            <h6>Return rules summary </h6>
+                            <ul>
+                                <li>Returns accepted for 30 ____ </li>
+                                <li>Free return shipping </li>
+                                <li>No restocking fee </li>
+                                <li>No final sale items </li>
+                            </ul>
+                        </div>
+                        <hr />
+
+                        <div class="single__return__checkout">
+                            <h5>Guaranteed safe checkout </h5>
+                        </div>
+
+                        <div class="single__product__small__img">
+                            <ul>
+                                <li>
+                                    <img src="{{asset('/')}}frontend/img/footer/footer__1.svg" alt="" />
+                                </li>
+                                <li>
+                                    <img src="{{asset('/')}}frontend/img/footer/footer__2.svg" alt="" />
+                                </li>
+                                <li>
+                                    <img src="{{asset('/')}}frontend/img/footer/footer__3.svg" alt="" />
+                                </li>
+                                <li>
+                                    <img src="{{asset('/')}}frontend/img/footer/footer__4.svg" alt="" />
+                                </li>
+                                <li>
+                                    <img src="{{asset('/')}}frontend/img/footer/footer__5.svg" alt="" />
+                                </li>
+                                <li>
+                                    <img src="{{asset('/')}}frontend/img/footer/footer__6.svg" alt="" />
+                                </li>
+                            </ul>
+                        </div>
+                        <hr />
+
+                        <div class="single__product__pairs">
+                            <h6>Pairs well with </h6>
+                        </div>
+
+                        <div class="single__product__grid">
+                            <div class="row grid__responsive">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-6">
+                                    <div class="grid__wraper">
+                                        <div class="grid__wraper__img">
+                                            <div class="grid__wraper__img__inner">
+                                                <a href='single-product.html'>
+                                                    <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__1.png" alt="Primary Image" />
+                                                </a>
+                                            </div>
+                                            <div class="grid__wraper__quickview">                                
+                                                <a class="" title="Quickview" data-toggle="modal" data-target="#quickViewModal" href="javascript:void(0);" onclick="quiqview('e-s-product')" tabindex="0">Quickview
+                                                </a>
+                                            </div>
+       
+                                        </div>
+                                        <div class="grid__wraper__info">
+                                            <h3 class="grid__wraper__tittle">
+                                                <a href='single-product.html' tabindex='0'>E. Casual Comf.. </a>
+                                            </h3>
+                                            <div class="grid__wraper__price">
+                                                <del>$72.00 </del>
+                                                <span>$47.00 </span> 
+                                            </div>
+                                        </div>
+       
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-6">
+                                    <div class="grid__wraper">
+                                        <div class="grid__wraper__img">
+                                            <div class="grid__wraper__img__inner">
+                                                <a href='single-product.html'>
+                                                    <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__2.png" alt="Primary Image" />
+                                                </a>
+                                            </div>
+                                            <div class="grid__wraper__quickview">                                
+                                                <a class="" title="Quickview" data-toggle="modal" data-target="#quickViewModal" href="javascript:void(0);" onclick="quiqview('e-s-product')" tabindex="0">Quickview
+                                                </a>
+                                            </div>
+       
+                                        </div>
+                                        <div class="grid__wraper__info">
+                                            <h3 class="grid__wraper__tittle">
+                                                <a href='single-product.html' tabindex='0'>E. Casual Comf.. </a>
+                                            </h3>
+                                            <div class="grid__wraper__price">
+                                             
+                                                <span>$47.00 </span> 
+                                            </div>
+                                         
+                                        </div>
+       
+                                
+                                      
+       
+       
+       
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-6">
+                                    <div class="grid__wraper">
+                                        <div class="grid__wraper__img">
+                                            <div class="grid__wraper__img__inner">
+                                                <a href='single-product.html'>
+                                                    <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__3.png" alt="Primary Image" />
+                                                </a>
+                                            </div>
+                                            <div class="grid__wraper__quickview">                                
+                                                <a class="" title="Quickview" data-toggle="modal" data-target="#quickViewModal" href="javascript:void(0);" onclick="quiqview('e-s-product')" tabindex="0">Quickview
+                                                </a>
+                                            </div>
+       
+                                        </div>
+                                        <div class="grid__wraper__info">
+                                            <h3 class="grid__wraper__tittle">
+                                                <a href='single-product.html' tabindex='0'>E. Casual Comf.. </a>
+                                            </h3>
+                                            <div class="grid__wraper__price">
+                                                <del>$72.00 </del>
+                                                <span>$47.00 </span> 
+                                            </div>
+                                         
+                                        </div>
+       
+                                
+                                      
+       
+       
+       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="single__social__media">
+                            <ul>
+                                <li>Share: </li>
+                                <li><a href="#" title="Share on Facebook" target="_blank"><i class="fab fa-facebook-f"></i><span>Facebook </span></a>
+                                </li>
+                            <li>
+                                <a href="#" title="Share on Twitter" target="_blank"><i class="fab fa-twitter"></i><span>Twitter </span></a>
+                            </li>
+                           
+                            <li>
+                                <a href="#" title="Share on Pinterest" target="_blank"><i class="fab fa-pinterest"></i><span>Pinterest </span></a>
+                            </li>
+                           
+                          </ul>
+                        </div>
+            </div>
         </div>
     </div>
 </div>
+</div>
+<!-- single__product__end -->
 
-<section class="section block-product-single">
-    <div class="container">
-        <div class="row mb-40">
-        <div class="col-lg-6">
-            <div class="detail-gallery detail-gallery-6 detail-gallery-7 detail-gallery-8">
-            <div class="box-main-gallery">
-                <figure class="border-radius-10">
-                    <a class="zoom-image glightbox" href="{{$product?->image}}"></a>
-                    <a class="glightbox link-image" href="{{$product?->image}}">
-                        <img src="{{$product?->image}}" alt="kidify">
-                    </a>
-                </figure>
-            </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="box-product-info box-product-info-stick">
-            <h3 class="mb-5">{{$product->name}} </h3>
+
+<!-- discription__section__start -->
+
+<div class="descriptionarea sp_bottom_80 ">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 descriptionarea__tab__wrapper">
+            <ul class="nav  descriptionarea__tab__button" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="descriptionarea__link active" data-bs-toggle="tab" data-bs-target="#description" type="button" aria-selected="false" role="tab" tabindex="-1">Description </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="descriptionarea__link" data-bs-toggle="tab" data-bs-target="#video" type="button" aria-selected="false" role="tab" tabindex="-1">Video </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="descriptionarea__link" data-bs-toggle="tab" data-bs-target="#product__Type" type="button" aria-selected="true" role="tab" tabindex="-1">Product Type </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="descriptionarea__link" data-bs-toggle="tab" data-bs-target="#delivery__system" type="button" aria-selected="false" role="tab">Delivery system </button>
+                  </li>
+            </ul>
+              <div class="tab-content tab__content__wrapper" id="myTabContent1">
+                <div class="tab-pane fade active show" id="description" role="tabpanel" aria-labelledby="description">  
+                 
+                     <p>
+                        {{ $product?->description }}
+                    </p>
+                   
+       
             
-            <div class="block-price">
-                <span class="price-main">
-                    @if(isset($product->skus))
-                        {{number_format($product->skus[0]['price'], 2)}}{{ $config->currency_symbol }}   
-                        @if (count($product->skus) > 1)
-                        -
-                        {{number_format(collect($product->skus)->max('price'), 2)}}{{ $config->currency_symbol }} 
-                        @endif
-                    @endif
-                </span> 
             </div>
-            {{-- <div class="block-description">
-                <p class="body-p2 neutral-medium-dark">
-                   description
-                 </p>
-            </div> --}}
-            <div class="block-size"><span>Variant: </span>
-                {{-- <label>S </label> --}}
-                <div class="box-list-sizes">
-                    <div class="list-sizes">
-                        @foreach ($product->skus as $sku)
-                            <span 
-                                onclick="clickVariant()"
-                                sku_code="{{$sku['sku_code']}}"
-                                variant_name="{{$sku['variant_name']}}" 
-                                price="{{$sku['price']}}" 
-                                image="{{$product->image}}" 
-                                class="item-size">
-                                {{$sku['variant_name']}} 
-                            </span>
-                        @endforeach
-                    </div>
-                    {{-- <a class="text-17-medium link-underline" href="#">Size Guide </a> --}}
+                <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video">
+                  
+                        <p>
+                           As opposed __ using 'Content here, content ____', making it look like ________
+                           English. Many desktop __________ packages and web page _______ now use Lorem
+                           _____ as their default model ____, and a search for '_____ ipsum' will uncover
+                           ____ web sites still in _____ infancy. Various versions have _______ over the
+                           years, _________ by accident, sometimes on _______ injected humour and the
+                           like. It is a ____ established fact that a ______ will be distracted by ___
+                           readable content of _ page when looking at ___ layout. The point of _____ Lorem
+                           Ipsum is ____ it has a more-or-less ______ distribution of letters
+                        </p>
+                        <p>
+                           If you ___ going to use a _______ of Lorem Ipsum, you ____ to be sure there
+                           isn't anything embarrassing hidden __ the middle of text. ___ the Lorem Ipsum
+                           __________ on the Internet tend __ repeat predefined chunks as _________, making
+                           this the _____ true generator on the ________. It uses a dictionary __ over 200
+                           Latin _____, combined with a handful __ model sentence structures, to ________
+                           Lorem Ipsum which _____ reasonable. The generated Lorem _____ is therefore
+                           always ____ from repetition, injected humour, __ non-characteristic words etc
+                        </p>
+           
                 </div>
-            </div>
-
-            <div class="block-tags-product">
-                <p class="body-p2"><span class="neutral-medium-dark">Categories: </span>
-                    <a class="neutral-dark" href="{{route('category', $product?->category['slug'] ?? '1')}}">{{$product?->category['name']}} </a>
-                </p>
-            </div>
-
-            <div class="block-quantity">
-                <div class="text-17 neutral-medium-dark mb-10">Quantity </div>
-                <div class="box-form-cart">
-                <div class="form-cart detail-qty"><span class="minus"></span>
-                    <input class="qty-val form-control" type="text" id="quantity" name="quantity" value="1" min="1"><span class="plus"></span>
+                <div class="tab-pane fade " id="product__Type" role="tabpanel" aria-labelledby="product__Type">
+                 
+                        <p>
+                           As opposed __ using 'Content here, content ____', making it look like ________
+                           English. Many desktop __________ packages and web page _______ now use Lorem
+                           _____ as their default model ____, and a search for '_____ ipsum' will uncover
+                           ____ web sites still in _____ infancy. Various versions have _______ over the
+                           years, _________ by accident, sometimes on _______ injected humour and the
+                           like. It is a ____ established fact that a ______ will be distracted by ___
+                           readable content of _ page when looking at ___ layout. The point of _____ Lorem
+                           Ipsum is ____ it has a more-or-less ______ distribution of letters
+                        </p>
+                        <p>
+                           If you ___ going to use a _______ of Lorem Ipsum, you ____ to be sure there
+                           isn't anything embarrassing hidden __ the middle of text. ___ the Lorem Ipsum
+                           __________ on the Internet tend __ repeat predefined chunks as _________, making
+                           this the _____ true generator on the ________. It uses a dictionary __ over 200
+                           Latin _____, combined with a handful __ model sentence structures, to ________
+                           Lorem Ipsum which _____ reasonable. The generated Lorem _____ is therefore
+                           always ____ from repetition, injected humour, __ non-characteristic words etc
+                        </p>
+           
+                 
                 </div>
-                <button class="btn btn-black" onclick="addToCart()">Add to Cart </button>
-                <button class="btn btn-navy" onclick="addToCart('buy_now')">Buy Now </button>
-                <a class="btn btn-wishlist" href="#">
-                    <svg class="d-inline-flex align-items-center justify-content-center" width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_116_452)">
-                        <path d="M14.001 6.52898C16.35 4.41998 19.98 4.48998 22.243 6.75698C24.505 9.02498 24.583 12.637 22.479 14.993L13.999 23.485L5.52101 14.993C3.41701 12.637 3.49601 9.01898 5.75701 6.75698C8.02201 4.49298 11.645 4.41698 14.001 6.52898ZM20.827 8.16998C19.327 6.66798 16.907 6.60698 15.337 8.01698L14.002 9.21498L12.666 8.01798C11.091 6.60598 8.67601 6.66798 7.17201 8.17198C5.68201 9.66198 5.60701 12.047 6.98001 13.623L14 20.654L21.02 13.624C22.394 12.047 22.319 9.66498 20.827 8.16998Z" fill=""></path>
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_116_452">
-                        <rect width="24" height="24" fill="white" transform="translate(2 2)"></rect>
-                        </clipPath>
-                    </defs>
-                    </svg>
-                </a>
+                <div class="tab-pane fade" id="delivery__system" role="tabpanel" aria-labelledby="delivery__system">
+                
+                        <p>
+                           As opposed __ using 'Content here, content ____', making it look like ________
+                           English. Many desktop __________ packages and web page _______ now use Lorem
+                           _____ as their default model ____, and a search for '_____ ipsum' will uncover
+                           ____ web sites still in _____ infancy. Various versions have _______ over the
+                           years, _________ by accident, sometimes on _______ injected humour and the
+                           like. It is a ____ established fact that a ______ will be distracted by ___
+                           readable content of _ page when looking at ___ layout. The point of _____ Lorem
+                           Ipsum is ____ it has a more-or-less ______ distribution of letters
+                        </p>
+                        <p>
+                           If you ___ going to use a _______ of Lorem Ipsum, you ____ to be sure there
+                           isn't anything embarrassing hidden __ the middle of text. ___ the Lorem Ipsum
+                           __________ on the Internet tend __ repeat predefined chunks as _________, making
+                           this the _____ true generator on the ________. It uses a dictionary __ over 200
+                           Latin _____, combined with a handful __ model sentence structures, to ________
+                           Lorem Ipsum which _____ reasonable. The generated Lorem _____ is therefore
+                           always ____ from repetition, injected humour, __ non-characteristic words etc
+                        </p>
+           
                 </div>
-            </div>
-            <div class="block-shipping">
-                <div class="text-17 neutral-medium-dark mb-10">Shipping </div>
-                <div class="free-shipping">Outside Dhaka {{$config->outside_dhaka}}{{ $config->currency_symbol }}, Over Per Kg add: {{ $config->outside_dhaka_over_per_kg }}{{ $config->currency_symbol }}</div>
-                <div class="time-shipping">Inside Dhaka {{ $config->inside_dhaka }}{{ $config->currency_symbol }}, Over Per Kg add: {{ $config->inside_dhaka_over_per_kg }}{{ $config->currency_symbol }}</div>
-            </div>
-            <br>
-            <div class="block-socials-product"><span class="body-p2 neutral-medium-dark">Share: </span><a class="social-neutral-dark" href="#">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15.9047 12.75H13.4437V20.1H10.1625V12.75H7.47187V9.73125H10.1625V7.40156C10.1625 4.77656 11.7375 3.3 14.1328 3.3C15.2813 3.3 16.4953 3.52969 16.4953 3.52969V6.12187H15.15C13.8375 6.12187 13.4437 6.90937 13.4437 7.7625V9.73125H16.3641L15.9047 12.75Z" fill=""></path>
-                </svg></a><a class="social-neutral-dark" href="#">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18.6609 8.2875C18.6609 8.45156 18.6609 8.58281 18.6609 8.74687C18.6609 13.3078 15.2156 18.525 8.88281 18.525C6.91406 18.525 5.10937 17.9672 3.6 16.9828C3.8625 17.0156 4.125 17.0484 4.42031 17.0484C6.02812 17.0484 7.50469 16.4906 8.68594 15.5719C7.17656 15.5391 5.89687 14.5547 5.47031 13.1766C5.7 13.2094 5.89687 13.2422 6.12656 13.2422C6.42187 13.2422 6.75 13.1766 7.0125 13.1109C5.4375 12.7828 4.25625 11.4047 4.25625 9.73125V9.69844C4.71562 9.96094 5.27344 10.0922 5.83125 10.125C4.87969 9.50156 4.28906 8.45156 4.28906 7.27031C4.28906 6.61406 4.45312 6.02344 4.74844 5.53125C6.45469 7.59844 9.01406 8.97656 11.8687 9.14062C11.8031 8.87812 11.7703 8.61562 11.7703 8.35312C11.7703 6.45 13.3125 4.90781 15.2156 4.90781C16.2 4.90781 17.0859 5.30156 17.7422 5.99062C18.4969 5.82656 19.2516 5.53125 19.9078 5.1375C19.6453 5.95781 19.1203 6.61406 18.3984 7.04062C19.0875 6.975 19.7766 6.77812 20.3672 6.51562C19.9078 7.20469 19.3172 7.79531 18.6609 8.2875Z" fill=""></path>
-                </svg></a><a class="social-neutral-dark" href="#">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20.1375 11.7C20.1375 16.1953 16.4953 19.8375 12 19.8375C11.1469 19.8375 10.3266 19.7391 9.57187 19.4766C9.9 18.9516 10.3922 18.0656 10.5891 17.3437C10.6875 16.9828 11.0812 15.4078 11.0812 15.4078C11.3437 15.9328 12.1312 16.3594 12.9516 16.3594C15.4125 16.3594 17.1844 14.0953 17.1844 11.3062C17.1844 8.61562 14.9859 6.58125 12.1641 6.58125C8.65312 6.58125 6.78281 8.94375 6.78281 11.5031C6.78281 12.7172 7.40625 14.1937 8.42344 14.6859C8.5875 14.7516 8.68594 14.7187 8.71875 14.5547C8.71875 14.4562 8.88281 13.8984 8.94844 13.6359C8.94844 13.5703 8.94844 13.4719 8.88281 13.4062C8.55469 13.0125 8.29219 12.2578 8.29219 11.5359C8.29219 9.76406 9.6375 8.025 11.9672 8.025C13.9359 8.025 15.3469 9.37031 15.3469 11.3391C15.3469 13.5375 14.2312 15.0469 12.7875 15.0469C12 15.0469 11.4094 14.3906 11.5734 13.6031C11.8031 12.6187 12.2625 11.5687 12.2625 10.8797C12.2625 10.2562 11.9344 9.73125 11.2453 9.73125C10.425 9.73125 9.76875 10.5844 9.76875 11.7C9.76875 12.4219 9.99844 12.9141 9.99844 12.9141C9.99844 12.9141 9.21094 16.3266 9.04687 16.95C8.88281 17.6719 8.94844 18.6563 9.01406 19.2797C5.99531 18.0984 3.8625 15.1781 3.8625 11.7C3.8625 7.20469 7.50469 3.5625 12 3.5625C16.4953 3.5625 20.1375 7.20469 20.1375 11.7Z" fill=""></path>
-                </svg></a><a class="social-neutral-dark" href="#">
-                <svg width="29" height="28" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14.6001 10.0078C12.1001 10.0078 10.1079 12.0391 10.1079 14.5C10.1079 17 12.1001 18.9922 14.6001 18.9922C17.061 18.9922 19.0923 17 19.0923 14.5C19.0923 12.0391 17.061 10.0078 14.6001 10.0078ZM14.6001 17.4297C12.9985 17.4297 11.6704 16.1406 11.6704 14.5C11.6704 12.8984 12.9595 11.6094 14.6001 11.6094C16.2017 11.6094 17.4907 12.8984 17.4907 14.5C17.4907 16.1406 16.2017 17.4297 14.6001 17.4297ZM20.3032 9.85156C20.3032 9.26562 19.8345 8.79688 19.2485 8.79688C18.6626 8.79688 18.1938 9.26562 18.1938 9.85156C18.1938 10.4375 18.6626 10.9062 19.2485 10.9062C19.8345 10.9062 20.3032 10.4375 20.3032 9.85156ZM23.272 10.9062C23.1938 9.5 22.8813 8.25 21.8657 7.23438C20.8501 6.21875 19.6001 5.90625 18.1938 5.82812C16.7485 5.75 12.4126 5.75 10.9673 5.82812C9.56104 5.90625 8.3501 6.21875 7.29541 7.23438C6.27979 8.25 5.96729 9.5 5.88916 10.9062C5.81104 12.3516 5.81104 16.6875 5.88916 18.1328C5.96729 19.5391 6.27979 20.75 7.29541 21.8047C8.3501 22.8203 9.56104 23.1328 10.9673 23.2109C12.4126 23.2891 16.7485 23.2891 18.1938 23.2109C19.6001 23.1328 20.8501 22.8203 21.8657 21.8047C22.8813 20.75 23.1938 19.5391 23.272 18.1328C23.3501 16.6875 23.3501 12.3516 23.272 10.9062ZM21.397 19.6562C21.1235 20.4375 20.4985 21.0234 19.7563 21.3359C18.5845 21.8047 15.8501 21.6875 14.6001 21.6875C13.311 21.6875 10.5767 21.8047 9.44385 21.3359C8.6626 21.0234 8.07666 20.4375 7.76416 19.6562C7.29541 18.5234 7.4126 15.7891 7.4126 14.5C7.4126 13.25 7.29541 10.5156 7.76416 9.34375C8.07666 8.60156 8.6626 8.01562 9.44385 7.70312C10.5767 7.23438 13.311 7.35156 14.6001 7.35156C15.8501 7.35156 18.5845 7.23438 19.7563 7.70312C20.4985 7.97656 21.0845 8.60156 21.397 9.34375C21.8657 10.5156 21.7485 13.25 21.7485 14.5C21.7485 15.7891 21.8657 18.5234 21.397 19.6562Z" fill=""></path>
-                </svg></a></div>
-            <div class="box-detail-product box-detail-product-2">
-                <ul class="nav-tabs nav-tab-product justify-content-start" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description </button>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                       {!!$product->description!!}
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
+              </div>
         </div>
     </div>
-</section>
+</div>
+</div>
+
+<!-- discription__section__end -->
+
+        <!-- related__section__start -->
+        <div class="related__section sp_bottom_50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section__title text-center">
+                            <h2>Related Products </h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row grid__responsive row__custom__class feature__slider__active slider__default__arrow">
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__1.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__2.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                    
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+                                <div class="grid__wraper__badge">
+                                    <span class="new__badge">New </span>
+                                    <span class="sale__badge">-15% </span>
+                                </div>
+
+                                <div class="grid__wraper__countdown" data-countdown="2026/06/01">
+                                    <div class="count">
+                                        <p>422 </p><span>Days </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>23 </p>  <span>Hrs </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>25 </p>  <span>Min </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>01 </p>  <span>Sec </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>W. Men Formal T-shirt </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <del>$72.00 </del>
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__1.png);">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__2.png);">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__3.png);">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__4.png);">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+5 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                    
+                          
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__3.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__4.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                    
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>B. Pair of Blue _____ </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: red;">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: green;">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: blue;">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: black;">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+8 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                    
+                          
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__5.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__6.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                    
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+                                <div class="grid__wraper__badge">
+                                    <span class="new__badge">New </span>
+                                </div>
+
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>F. Ultimate Smart Watch </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: red;">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: green;">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: blue;">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: black;">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+3 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__7.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__8.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                    
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+                                <div class="grid__wraper__badge">
+                                    <span class="sale__badge">-15% </span>
+                                </div>
+
+                                <div class="grid__wraper__countdown" data-countdown="2027/02/01">
+                                    <div class="count">
+                                        <p>422 </p><span>Days </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>23 </p>  <span>Hrs </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>25 </p>  <span>Min </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>01 </p>  <span>Sec </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>S. Mokmol Jacket </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <del>$72.00 </del>
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__1.png);">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__2.png);">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__3.png);">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__4.png);">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+2 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__1.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__2.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                    
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+                                <div class="grid__wraper__badge">
+                                    <span class="new__badge">New </span>
+                                    <span class="sale__badge">-15% </span>
+                                </div>
+
+                                <div class="grid__wraper__countdown" data-countdown="2026/06/01">
+                                    <div class="count">
+                                        <p>422 </p><span>Days </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>23 </p>  <span>Hrs </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>25 </p>  <span>Min </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>01 </p>  <span>Sec </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>W. Men Formal T-shirt </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <del>$72.00 </del>
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__1.png);">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__2.png);">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__3.png);">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__4.png);">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+5 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                    
+                          
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__3.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__4.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                    
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>B. Pair of Blue _____ </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: red;">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: green;">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: blue;">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: black;">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+8 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                    
+                          
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__5.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__6.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                    
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+                                <div class="grid__wraper__badge">
+                                    <span class="new__badge">New </span>
+                                </div>
+
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>F. Ultimate Smart Watch </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: red;">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: green;">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: blue;">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: black;">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+3 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__7.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__8.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                    
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+                                <div class="grid__wraper__badge">
+                                    <span class="sale__badge">-15% </span>
+                                </div>
+
+                                <div class="grid__wraper__countdown" data-countdown="2027/02/01">
+                                    <div class="count">
+                                        <p>422 </p><span>Days </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>23 </p>  <span>Hrs </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>25 </p>  <span>Min </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>01 </p>  <span>Sec </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>S. Mokmol Jacket </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <del>$72.00 </del>
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__1.png);">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__2.png);">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__3.png);">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__4.png);">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+2 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                   
+                </div>
+
+            </div>
+         </div>
+        <!-- related__section__start -->
+
+        <!-- related__section__start -->
+        <div class="related__section sp_bottom_50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section__title text-center">
+                            <h2>Recently Viewed </h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row grid__responsive row__custom__class feature__slider__active slider__default__arrow">
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__35.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__36.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                       
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+                                <div class="grid__wraper__badge">
+                                    <span class="new__badge">New </span>
+                                    <span class="sale__badge">-15% </span>
+                                </div>
+
+                                <div class="grid__wraper__countdown" data-countdown="2026/06/01">
+                                    <div class="count">
+                                        <p>422 </p><span>Days </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>23 </p>  <span>Hrs </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>25 </p>  <span>Min </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>01 </p>  <span>Sec </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>W. Men Formal T-shirt </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <del>$72.00 </del>
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__1.png);">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__2.png);">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__3.png);">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__4.png);">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+5 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                       
+                           
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__33.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__34.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                       
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>B. Pair of Blue _____ </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: red;">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: green;">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: blue;">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: black;">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+8 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                       
+                           
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__32.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__31.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                       
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+                                <div class="grid__wraper__badge">
+                                    <span class="new__badge">New </span>
+                                </div>
+
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>F. Ultimate Smart Watch </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: red;">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: green;">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: blue;">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: black;">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+3 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__28.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__29.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                       
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+                                <div class="grid__wraper__badge">
+                                    <span class="sale__badge">-15% </span>
+                                </div>
+
+                                <div class="grid__wraper__countdown" data-countdown="2027/02/01">
+                                    <div class="count">
+                                        <p>422 </p><span>Days </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>23 </p>  <span>Hrs </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>25 </p>  <span>Min </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>01 </p>  <span>Sec </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>S. Mokmol Jacket </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <del>$72.00 </del>
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__1.png);">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__2.png);">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__3.png);">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__4.png);">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+2 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__26.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__25.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                       
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+                                <div class="grid__wraper__badge">
+                                    <span class="new__badge">New </span>
+                                    <span class="sale__badge">-15% </span>
+                                </div>
+
+                                <div class="grid__wraper__countdown" data-countdown="2026/06/01">
+                                    <div class="count">
+                                        <p>422 </p><span>Days </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>23 </p>  <span>Hrs </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>25 </p>  <span>Min </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>01 </p>  <span>Sec </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>W. Men Formal T-shirt </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <del>$72.00 </del>
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__1.png);">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__2.png);">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__3.png);">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__4.png);">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+5 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                       
+                           
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__23.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__22.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                       
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>B. Pair of Blue _____ </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: red;">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: green;">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: blue;">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: black;">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+8 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                       
+                           
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__20.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__21.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                       
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+                                <div class="grid__wraper__badge">
+                                    <span class="new__badge">New </span>
+                                </div>
+
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>F. Ultimate Smart Watch </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: red;">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: green;">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: blue;">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: black;">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+3 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 column__custom__class">
+                        <div class="grid__wraper">
+                            <div class="grid__wraper__img">
+                                <div class="grid__wraper__img__inner">
+                                    <a href='single-product.html'>
+                                        <img class="primary__image" src="{{asset('/')}}frontend/img/grid/grid__19.png" alt="Primary Image" />
+                                        <img class="secondary__image" src="{{asset('/')}}frontend/img/grid/grid__18.png" alt="Secondary Image" />
+                                    </a>
+                                </div>
+                                <div class="grid__wraper__icon">                                
+                                    <ul>
+                                        <li>
+                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart" data-bs-original-title="Add To Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>                                             
+                                        </li>
+
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Wishlist" data-bs-original-title="Add To Wishlist">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        </li>
+                                       
+                                        <li>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Compare" data-bs-original-title="Add To Compare">
+                                                <i class="fas fa-exchange-alt"></i>
+                                               
+                                            </a>
+                                        </li>
+
+                                    </ul>   
+                                </div>
+
+                                <div class="grid__wraper__badge">
+                                    <span class="sale__badge">-15% </span>
+                                </div>
+
+                                <div class="grid__wraper__countdown" data-countdown="2027/02/01">
+                                    <div class="count">
+                                        <p>422 </p><span>Days </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>23 </p>  <span>Hrs </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>25 </p>  <span>Min </span>
+                                    </div>
+                                    <div class="count">
+                                        <p>01 </p>  <span>Sec </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="grid__wraper__info">
+                                <h3 class="grid__wraper__tittle">
+                                    <a href='single-product.html' tabindex='0'>S. Mokmol Jacket </a>
+                                </h3>
+                                <div class="grid__wraper__price">
+                                    <del>$72.00 </del>
+                                    <span>$47.00 </span> 
+                                </div>
+                                <div class="grid__wraper__color">
+                                    <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
+                                        <li class="red color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__1.png);">
+                                            </label>
+                                        </li>
+                                        <li class="green color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Green" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__2.png);">
+                                            </label>
+                                        </li>
+                                        <li class="blue color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Blue" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__3.png);">
+                                            </label>
+                                        </li>
+                                        <li class="black color_img_variant">
+                                            <label data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__4.png);">
+                                            </label>
+                                        </li>
+                                        <li class="vaiant-plus-one">
+                                            <a href='single-product.html' tabindex='0'>
+                                                <span>+2 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                   
+                </div>
+
+            </div>
+
+        </div>
+        <!-- related__section__start -->
+
+
+        <!-- faq__section__start -->
+            <div class="faq sp_bottom_50">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="faq__heading text-center section__title">
+                                <h2 class="">FAQs </h2>
+                            </div>
+                            <div class="accordion" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                       ___ to buy a product?
+                                    </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <strong>This is the first ____'_ accordion body. </strong> It is shown __ default, until the collapse ______ adds the appropriate classes ____ we use to style ____ element. These classes control ___ overall appearance, as well __ the showing and hiding ___ CSS transitions. You can ______ any of this with ______ CSS or overriding our _______ variables. It's also worth ______ that just about any ____ can go within the  <code>.accordion-body </code>, though the transition ____ limit overflow.
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                       ___ can i make refund ____ your website?
+                                    </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <strong>This is the second ____'_ accordion body. </strong> It is hidden __ default, until the collapse ______ adds the appropriate classes ____ we use to style ____ element. These classes control ___ overall appearance, as well __ the showing and hiding ___ CSS transitions. You can ______ any of this with ______ CSS or overriding our _______ variables. It's also worth ______ that just about any ____ can go within the  <code>.accordion-body </code>, though the transition ____ limit overflow.
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                       _ am a new user. ___ should I start?
+                                    </button>
+                                    </h2>
+                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <strong>This is the third ____'_ accordion body. </strong> It is hidden __ default, until the collapse ______ adds the appropriate classes ____ we use to style ____ element. These classes control ___ overall appearance, as well __ the showing and hiding ___ CSS transitions. You can ______ any of this with ______ CSS or overriding our _______ variables. It's also worth ______ that just about any ____ can go within the  <code>.accordion-body </code>, though the transition ____ limit overflow.
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingFour">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                           I __ a new user. How ______ I start?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                        <strong>This is the third ____'_ accordion body. </strong> It is hidden __ default, until the collapse ______ adds the appropriate classes ____ we use to style ____ element. These classes control ___ overall appearance, as well __ the showing and hiding ___ CSS transitions. You can ______ any of this with ______ CSS or overriding our _______ variables. It's also worth ______ that just about any ____ can go within the  <code>.accordion-body </code>, though the transition ____ limit overflow.
+                                        </div>
+                                    </div>
+                                    </div>
+
+
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- faq__section__end -->
+
+
+        <!-- contact__section__start  -->
+        <div class="single__product__contact sp_bottom_80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="single__product__contact__text text-center">
+                            <h2>For furthermore help, contact ____ our support team. </h2>
+                            <div class="single__product__contact__button">
+                            <a href="#" class="default__button">Contact Us </a>
+                        </div>
+                        <h3 class="single__product__contact__number"><i class="fas fa-phone"></i> +0123-456-789 </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- contact__section__end  -->
+
+
+
+
 
 @endsection
 
