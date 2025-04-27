@@ -153,7 +153,7 @@
         
                                          <li class="position-static">
                                              <a class='headerarea__has__dropdown' href='shop.html'>Shop
-                                                 <span class="header__label">New </span>
+                                                 {{-- <span class="header__label">New </span> --}}
                                              </a>
         
                                              {{-- <ul class="headerarea__submenu headerarea__megamenu">
@@ -235,7 +235,7 @@
         
                                          <li class="position-static">
                                              <a class='headerarea__has__dropdown' href='categories.html'>Categories
-                                                 <span class="header__label hot__color">Hot </span>
+                                                 {{-- <span class="header__label hot__color">Hot </span> --}}
                                              </a>
         
                                              <ul class="headerarea__submenu headerarea__megamenu">
