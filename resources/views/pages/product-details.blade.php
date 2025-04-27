@@ -107,7 +107,7 @@
                 <del> {{number_format(collect($product->skus)->max('price'), 2)}}{{ $config->currency_symbol }} </del>
                     @endif
                 @endif
-                    <label>Save -25% </label>
+                    {{-- <label>Save -25% </label> --}}
                 </div>
 
                 <hr />
@@ -118,12 +118,12 @@
                    
                     </div>
              
-                  <div class="single__product__eye">
+                  {{-- <div class="single__product__eye">
                     <div onload="startTime()">
                       <img src="{{asset('/')}}frontend/img/eye/eye__1.webp" alt="live beacon" style="height:30px; margin-right:5px; padding-bottom: 0px;" />
                       <span id="txt"><strong>14 </strong> people are viewing ____ right now. </span>
                     </div>
-                  </div>
+                  </div> --}}
                 
                   <div class="single__product__special__feature">
                     @foreach ($product->skus as $sku)
@@ -140,12 +140,12 @@
                             <strong>SKU Price: </strong>
                             <span class="variant__sku">{{ $sku['price'] }}</span>
                         </li>
-                        <li>
+                        {{-- <li>
                             <strong>Image: </strong>
                             <span class="variant__sku">
                                 {{ $sku['image'] ?? $product->image }}
                             </span>
-                        </li>
+                        </li> --}}
                     </ul>
                     @endforeach
                 </div>
@@ -180,15 +180,15 @@
                       </div>
 
                       <hr />
-                      {{-- <div class="single__product__swatch single__product__size">
+                      <div class="single__product__swatch single__product__size">
                         <span class="header">Size :  </span>
                         <ul>
-                            <li><a href="#">x </a></li>
+                            <li  class="active"><a href="#">x </a></li>
                             <li><a href="#">xl </a></li>
                             <li><a href="#">m </a></li>
                             <li><a href="#">s </a></li>
                         </ul>
-                      </div> --}}
+                      </div>
 
 
                       {{-- <div class="single__product__swatch d-flex flex-wrap align-items-center" data-option-index="1">
@@ -247,7 +247,7 @@
 
 
 
-                    <div class="single__product__bottom__menu">
+                    {{-- <div class="single__product__bottom__menu">
                         <ul>
                             <li>
                             <a href="#" title="Add to wishlist">
@@ -432,7 +432,7 @@
                            
                           </ul>
                         </div>
-            </div>
+                   </div> --}}
         </div>
     </div>
 </div>
@@ -453,12 +453,12 @@
                 <li class="nav-item" role="presentation">
                   <button class="descriptionarea__link" data-bs-toggle="tab" data-bs-target="#video" type="button" aria-selected="false" role="tab" tabindex="-1">Video </button>
                 </li>
-                <li class="nav-item" role="presentation">
+                {{-- <li class="nav-item" role="presentation">
                   <button class="descriptionarea__link" data-bs-toggle="tab" data-bs-target="#product__Type" type="button" aria-selected="true" role="tab" tabindex="-1">Product Type </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="descriptionarea__link" data-bs-toggle="tab" data-bs-target="#delivery__system" type="button" aria-selected="false" role="tab">Delivery system </button>
-                  </li>
+                  </li> --}}
             </ul>
               <div class="tab-content tab__content__wrapper" id="myTabContent1">
                 <div class="tab-pane fade active show" id="description" role="tabpanel" aria-labelledby="description">  
@@ -493,7 +493,7 @@
                         </p>
            
                 </div>
-                <div class="tab-pane fade " id="product__Type" role="tabpanel" aria-labelledby="product__Type">
+                {{-- <div class="tab-pane fade " id="product__Type" role="tabpanel" aria-labelledby="product__Type">
                  
                         <p>
                            As opposed __ using 'Content here, content ____', making it look like ________
@@ -539,7 +539,7 @@
                            always ____ from repetition, injected humour, __ non-characteristic words etc
                         </p>
            
-                </div>
+                </div> --}}
               </div>
         </div>
     </div>
@@ -1313,7 +1313,7 @@
         <!-- related__section__start -->
 
         <!-- related__section__start -->
-        <div class="related__section sp_bottom_50">
+        {{-- <div class="related__section sp_bottom_50">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
@@ -2074,12 +2074,12 @@
 
             </div>
 
-        </div>
+        </div> --}}
         <!-- related__section__start -->
 
 
         <!-- faq__section__start -->
-            <div class="faq sp_bottom_50">
+            {{-- <div class="faq sp_bottom_50">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
@@ -2142,13 +2142,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         <!-- faq__section__end -->
 
 
         <!-- contact__section__start  -->
         <div class="single__product__contact sp_bottom_80">
-            <div class="container">
+            {{-- <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="single__product__contact__text text-center">
@@ -2160,7 +2160,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     <!-- contact__section__end  -->
 

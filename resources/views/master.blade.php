@@ -9,19 +9,19 @@
      <title>Index | Minimalin eCommerce _________ 5 Template. </title>
      <meta name="description" content="" />
      <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-     <link rel="shortcut icon" type="image/x-icon" href="{{asset('/')}}frontend/img/favicon.png" />
+     <link rel="shortcut icon" type="image/x-icon" href="{{$config->logo}}" />
+     {{-- <link rel="shortcut icon" type="image/x-icon" href="{{asset('/')}}frontend/img/favicon.png" /> --}}
      <!-- Place favicon.ico in the root directory -->
 
      <!-- CSS here -->
      <link rel="stylesheet" href="{{asset('/')}}frontend/css/bootstrap.min.css" />
      <link rel="stylesheet" href="{{asset('/')}}frontend/css/animate.min.css" />
      <link rel="stylesheet" href="{{asset('/')}}frontend/css/magnific-popup.css" />
-     <link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-     <link rel="stylesheet" href="../../fonts.cdnfonts.com/css/futura-std-4.css" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/futura-std-4.css" />
      <link rel="stylesheet" href="{{asset('/')}}frontend/css/slick.css" />
      <link rel="stylesheet" href="{{asset('/')}}frontend/css/style.css" />
-
+     <script src="https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js" type="text/javascript"></script>
 
 
  </head>
@@ -58,7 +58,7 @@
                      <div class="col-xl-5 col-lg-5">
                          <div class="header__topbar__right">
         
-                             <div class="header__topbar__language__wraper">
+                             {{-- <div class="header__topbar__language__wraper">
                                  <div class="header__topbar__language">
                                     English  <i class="fa fa-angle-down"></i>
                                      <div class="header__topbar__language__inner">
@@ -79,7 +79,7 @@
                                      </div>
                                  </div>
         
-                             </div>
+                             </div> --}}
         
                              <div class="header__topbar__social__icon">
                                  <ul>
@@ -126,7 +126,7 @@
                      <div class="row common__row position-relative">
                          <div class="col-xl-2 col-lg-2 col-md-6">
                              <div class="headerarea__logo">
-                                 <a href="#"><img src="img/logo/logo__1.png" alt="" /></a>
+                                 <a href="#"><img src="{{$config->logo}}" alt="" /></a>
                              </div>
                          </div>
         
@@ -151,10 +151,10 @@
                                              </ul> --}}
                                          </li>
         
-                                         <li class="position-static">
+                                         {{-- <li class="position-static">
                                              <a class='headerarea__has__dropdown' href='shop.html'>Shop
-                                                 {{-- <span class="header__label">New </span> --}}
-                                             </a>
+                                                 <span class="header__label">New </span>
+                                             </a> --}}
         
                                              {{-- <ul class="headerarea__submenu headerarea__megamenu">
                                                  <li class="mega__menu__li">
@@ -234,102 +234,29 @@
                                          </li>
         
                                          <li class="position-static">
-                                             <a class='headerarea__has__dropdown' href='categories.html'>Categories
+                                             <a class='headerarea__has__dropdown' href='#'>Categories
                                                  {{-- <span class="header__label hot__color">Hot </span> --}}
                                              </a>
-        
+                                         
                                              <ul class="headerarea__submenu headerarea__megamenu">
-        
+                                                @foreach ($categories as $category)
                                                  <li class="mega__menu__li mega__menu__image">
-                                                     <a class='menu__title' href='categories.html'>Featured Product </a>
+                                                     <a class='menu__title' href='{{route('category', $category['slug'])}}'>{{$category['name']}} </a>
                                                      <ul>
+
                                                          <li>
                                                              <a href='categories.html'>
-                                                                 <img class="img-fluid" src="{{asset('/')}}frontend/img/collection/collection__1.png" alt="Collection" />
+                                                                 <img class="img-fluid" src="{{ $category['image'] }}" alt="Collection" />
                                                              </a>
                                                          </li>
                                                      </ul>
                                                  </li>
+                                                 @endforeach
         
-                                                 <li class="mega__menu__li mega__menu__image">
-                                                     <a class='menu__title' href='categories.html'>New Arrivals </a>
-                                                     <ul>
-                                                         <li>
-                                                             <a href='categories.html'>
-                                                                 <img class="img-fluid" src="{{asset('/')}}frontend/img/collection/collection__2.png" alt="Collection" />
-                                                             </a>
-                                                         </li>
-                                                     </ul>
-                                                 </li>
-        
-                                                 <li class="mega__menu__li mega__menu__image">
-                                                     <a class='menu__title' href='categories.html'>Summer Styles </a>
-                                                     <ul>
-                                                         <li>
-                                                             <a href='categories.html'>
-                                                                 <img class="img-fluid" src="{{asset('/')}}frontend/img/collection/collection__3.png" alt="Collection" />
-                                                             </a>
-                                                         </li>
-                                                     </ul>
-                                                 </li>
-        
-                                                 <li class="mega__menu__li mega__menu__image">
-                                                     <a class='menu__title' href='categories.html'>Winter Fashion </a>
-                                                     <ul>
-                                                         <li>
-                                                             <a href='categories.html'>
-                                                                 <img class="img-fluid" src="{{asset('/')}}frontend/img/collection/collection__4.png" alt="Collection" />
-                                                             </a>
-                                                         </li>
-                                                     </ul>
-                                                 </li>
-        
-                                                 <li class="mega__menu__li mega__menu__image">
-                                                     <a class='menu__title' href='categories.html'>Accessories </a>
-                                                     <ul>
-                                                         <li>
-                                                             <a href='categories.html'>
-                                                                 <img class="img-fluid" src="{{asset('/')}}frontend/img/collection/collection__5.png" alt="Collection" />
-                                                             </a>
-                                                         </li>
-                                                     </ul>
-                                                 </li>
-        
-                                                 <li class="mega__menu__li mega__menu__image">
-                                                     <a class='menu__title' href='categories.html'>Footwear </a>
-                                                     <ul>
-                                                         <li>
-                                                             <a href='categories.html'>
-                                                                 <img class="img-fluid" src="{{asset('/')}}frontend/img/collection/collection__6.png" alt="Collection" />
-                                                             </a>
-                                                         </li>
-                                                     </ul>
-                                                 </li>
-        
-                                                 <li class="mega__menu__li mega__menu__image">
-                                                     <a class='menu__title' href='categories.html'>Men </a>
-                                                     <ul>
-                                                         <li>
-                                                             <a href='categories.html'>
-                                                                 <img class="img-fluid" src="{{asset('/')}}frontend/img/collection/collection__7.png" alt="Collection" />
-                                                             </a>
-                                                         </li>
-                                                     </ul>
-                                                 </li>
-        
-                                                 <li class="mega__menu__li mega__menu__image">
-                                                     <a class='menu__title' href='categories.html'>Women </a>
-                                                     <ul>
-                                                         <li>
-                                                             <a href='categories.html'>
-                                                                 <img class="img-fluid" src="{{asset('/')}}frontend/img/collection/collection__8.png" alt="Collection" />
-                                                             </a>
-                                                         </li>
-                                                     </ul>
-                                                 </li>
         
         
                                              </ul>
+                                             {{-- @endforeach --}}
         
                                          </li>
         
@@ -374,7 +301,7 @@
                              <div class="headerarea__right">
         
                                  <ul class="headerarea__right__nav">
-                                     <li class="disclosure__button">
+                                     {{-- <li class="disclosure__button">
                                          <div class="disclosure__button__language cursor__pointer">
                                             __ (USD $)  <i class="fa fa-angle-down"></i>
                                          </div>
@@ -418,7 +345,7 @@
                                                  </li>
                                              </ul>
                                          </div>
-                                     </li>
+                                     </li> --}}
                                      <li>
                                          <div class="headerarea__search cursor__pointer">
         
@@ -432,7 +359,7 @@
                                      </li>
         
         
-                                     <li>
+                                     {{-- <li>
                                          <div class="setting__wrap cursor__pointer">
                                              <div class="setting__wrap__active">
         
@@ -443,7 +370,7 @@
         
                                              </div>
                                          </div>
-                                     </li>
+                                     </li> --}}
         
                                      <li>
                                          <div class="headermiddle__bar cursor__pointer">
@@ -964,55 +891,12 @@
                     <div class="footer__content">
                         <p>Minimal E-Commerce is a _______ and innovative online retail ________ that offers a wide _____ of products to customers _________. </p>
                     </div>
-                    <div class="footer__social__icon">
-                        <ul>
-                            <li><a target="_blank" title="Facebook-f" href="https://www.facebook.com/shopify"><i class="fab fa-facebook-f"></i></a></li>     
-                           
-                           
-                            <li><a target="_blank" title="Twitter" href="https://twitter.com/shopify"><i class="fab fa-twitter"></i></a></li>       
-                              
-                           
-                           
-                            <li><a target="_blank" title="Youtube" href="https://www.youtube.com/user/shopify"><i class="fab fa-youtube"></i></a></li>       
-                           
-                           
-                            <li><a target="_blank" title="Instagram" href="https://www.instagram.com/shopify/"><i class="fab fa-instagram"></i></a></li>       
-                           
-                           
-                            <li><a target="_blank" title="Tiktok" href="https://www.tiktok.com/@shopify"><i class="fab fa-tiktok"></i></a></li>       
-                           
-                           
-                            </ul>
-                    </div>
-                    <div class="footer__bottom">
-                           <h5>Guaranteed safe checkout </h5>
-                            <div class="footer__img">
-                                <ul>
-                                    <li>
-                                        <img src="{{asset('/')}}frontend/img/footer/footer__1.svg" alt="" />
-                                    </li>
-                                    <li>
-                                        <img src="{{asset('/')}}frontend/img/footer/footer__2.svg" alt="" />
-                                    </li>
-                                    <li>
-                                        <img src="{{asset('/')}}frontend/img/footer/footer__3.svg" alt="" />
-                                    </li>
-                                    <li>
-                                        <img src="{{asset('/')}}frontend/img/footer/footer__4.svg" alt="" />
-                                    </li>
-                                    <li>
-                                        <img src="{{asset('/')}}frontend/img/footer/footer__5.svg" alt="" />
-                                    </li>
-                                    <li>
-                                        <img src="{{asset('/')}}frontend/img/footer/footer__6.svg" alt="" />
-                                    </li>
-                                </ul>
-                            </div>
-                </div>
+                  
+                    
                 </div>
             </div>
 
-            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-4 col-6">
+            {{-- <div class="col-xl-2 col-lg-2 col-md-6 col-sm-4 col-6">
                 <div class="footer__widget">
                     <h4 class="footer__title">Quick Link </h4>
                     <div class="footer__menu">
@@ -1056,7 +940,7 @@
                     </ul>
                   </div>
                 </div>
-            </div>
+            </div> --}}
 
 
 
@@ -1086,7 +970,7 @@
 
      <!-- JS here -->
      <script src="{{asset('/')}}frontend/js/vendor/modernizr-3.5.0.min.js"></script>
-     <script src="../../code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
      <script src="{{asset('/')}}frontend/js/popper.min.js"></script>
      <script src="{{asset('/')}}frontend/js/bootstrap.min.js"></script>
@@ -1104,6 +988,8 @@
      <script src="{{asset('/')}}frontend/js/fontawesome.min.js"></script>
      <script src="{{asset('/')}}frontend/js/plugins.js"></script>
      <script src="{{asset('/')}}frontend/js/main.js"></script>
+
+     @yield('script')
 
  </body>
 
