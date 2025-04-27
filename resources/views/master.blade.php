@@ -138,7 +138,7 @@
                                      <ul>
                                          <li><a class='headerarea__has__dropdown ' href='{{url('/')}}'>Home
                                              </a>
-                                             <ul class="headerarea__submenu">
+                                             {{-- <ul class="headerarea__submenu">
                                                  <li><a href='index.html'>Fashion 1 </a></li>
                                                  <li><a href='home-2.html'>Fashion 2 </a></li>
                                                  <li><a href='home-3.html'>Fashion 3 </a></li>
@@ -148,7 +148,7 @@
                                                  <li><a href='home-7.html'>Electronics </a></li>
                                                  <li><a href='home-8.html'>Single Product </a></li>
                                                  <li><a href='home-9-dark.html'>Home Dark </a></li>
-                                             </ul>
+                                             </ul> --}}
                                          </li>
         
                                          <li class="position-static">
@@ -156,7 +156,7 @@
                                                  <span class="header__label">New </span>
                                              </a>
         
-                                             <ul class="headerarea__submenu headerarea__megamenu">
+                                             {{-- <ul class="headerarea__submenu headerarea__megamenu">
                                                  <li class="mega__menu__li">
                                                      <a class='menu__title' href='categories.html'>Women's Fashion </a>
                                                      <ul>
@@ -229,7 +229,7 @@
                                                      </ul>
                                                  </li>
         
-                                             </ul>
+                                             </ul> --}}
         
                                          </li>
         
@@ -333,7 +333,7 @@
         
                                          </li>
         
-                                         <li><a href='about.html'>About </a>  </li>
+                                         {{-- <li><a href='about.html'>About </a>  </li>
         
         
                                          <li><a class='headerarea__has__dropdown' href='blog.html'>Blog
@@ -361,7 +361,7 @@
                                                  <li><a href='checkout.html'>Checkout </a></li>
                                                  <li><a href="https://themeforest.net/user/marino-themes">Purchase Now </a></li>
                                              </ul>
-                                         </li>
+                                         </li> --}}
                                      </ul>
                                  </nav>
                              </div>
