@@ -235,7 +235,7 @@
                       <div class="single__product__quantity">
                         <div class="qty-container">
                             <button class="qty-btn-minus btn-qty" type="button">- </button>
-                            <input type="text" name="qty" value="1" class="input-qty" />
+                            <input type="text" name="qty"  value="1" class="input-qty" />
                             <button class="qty-btn-plus btn-qty" type="button">+ </button>
                         </div>
                         <button class="default__button" onclick="addToCart()"><i class="fas fa-shopping-cart"></i> Add to cart </button>

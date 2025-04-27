@@ -793,7 +793,7 @@
                                                   <img class="secondary__image" src="{{$product['image']}}" alt="{{$product['name']}}" />
                                               </a>
                                           </div>
-                                          <div class="grid__wraper__icon">                                
+                                          {{-- <div class="grid__wraper__icon">                                
                                               <ul>
                                                   <li>
                                                       <span data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -823,14 +823,14 @@
                                                   </li>
      
                                               </ul>   
-                                          </div>
+                                          </div> --}}
      
-                                          <div class="grid__wraper__badge">
+                                          {{-- <div class="grid__wraper__badge">
                                               <span class="new__badge">New </span>
                                               <span class="sale__badge">-15% </span>
-                                          </div>
+                                          </div> --}}
      
-                                          <div class="grid__wraper__countdown" data-countdown="2026/06/01">
+                                          {{-- <div class="grid__wraper__countdown" data-countdown="2026/06/01">
                                               <div class="count">
                                                   <p>422 </p><span>Days </span>
                                               </div>
@@ -843,7 +843,7 @@
                                               <div class="count">
                                                   <p>01 </p>  <span>Sec </span>
                                               </div>
-                                          </div>
+                                          </div> --}}
      
                                       </div>
                                       <div class="grid__wraper__info">
@@ -860,7 +860,7 @@
                                           @endif
 
                                           </div>
-                                          <div class="grid__wraper__color">
+                                          {{-- <div class="grid__wraper__color">
                                               <ul class="color-categories grid-color-swatch color__img__parent d-flex justify-content-center">
                                                   <li class="red color_img_variant">
                                                       <label data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="background: url({{asset('/')}}frontend/img/grid/swatch__thumb__1.png);">
@@ -884,7 +884,7 @@
                                                       </a>
                                                   </li>
                                               </ul>
-                                          </div>
+                                          </div> --}}
                                       </div>
      
                               
