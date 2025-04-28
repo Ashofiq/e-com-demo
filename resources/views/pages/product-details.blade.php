@@ -12,6 +12,22 @@
         color: white;
         background: black;
     }
+    .list-sizes .item-size {
+        height: 42px;
+        line-height: 42px;
+        padding: 0px 12px;
+        border: 1px solid #555555;
+        border-radius: 4px;
+        margin-right: 8px;
+        cursor: pointer;
+        padding: 9px
+    }
+
+    .list-sizes .item-size.active {
+        border-color: #111111;
+        color: white;
+        background: black;
+    }
 </style>
 
     <!-- breadcrumb__start -->
@@ -100,23 +116,27 @@
                     <h2>{{$product->name}} </h2>
                 </div>
                 <div class="single__product__price">
-                    @if(isset($product->skus))
-                    <span>{{number_format($product->skus[0]['price'], 2)}}{{ $config->currency_symbol }}  </span> 
-                    @if (count($product->skus) > 1)
-                    -
-                <del> {{number_format(collect($product->skus)->max('price'), 2)}}{{ $config->currency_symbol }} </del>
-                    @endif
+                    <span class="price-main">
+                        @if(isset($product->skus))
+                        <span class="price-main">{{number_format($product->skus[0]['price'], 2)}}
+                           
+                        </span> 
+                        @if (count($product->skus) > 1)
+                            -
+                            {{number_format(collect($product->skus)->max('price'), 2)}}{{ $config->currency_symbol }}
+                        @endif
+                    </span>
                 @endif
                     {{-- <label>Save -25% </label> --}}
                 </div>
 
-                <hr />
+                {{-- <hr /> --}}
 
 
-                <div class="single__product__description">
+                {{-- <div class="single__product__description">
                     <p> {{ Str::limit($product->description, 100) }}  </p>
                    
-                    </div>
+                    </div> --}}
              
                   {{-- <div class="single__product__eye">
                     <div onload="startTime()">
@@ -125,33 +145,8 @@
                     </div>
                   </div> --}}
                 
-                  <div class="single__product__special__feature">
-                    @foreach ($product->skus as $sku)
-                    <ul onclick="clickVariant()">
-                        <li>
-                            <strong>SKU Code: </strong>
-                            <span class="variant__sku">{{ $sku['sku_code'] }}</span>
-                        </li>
-                        <li>
-                            <strong>SKU: </strong>
-                            <span class="variant__sku">{{ $sku['variant_name'] }}</span>
-                        </li>
-                        <li>
-                            <strong>SKU Price: </strong>
-                            <span class="variant__sku">{{ $sku['price'] }}</span>
-                        </li>
-                        {{-- <li>
-                            <strong>Image: </strong>
-                            <span class="variant__sku">
-                                {{ $sku['image'] ?? $product->image }}
-                            </span>
-                        </li> --}}
-                    </ul>
-                    @endforeach
-                </div>
-                
 
-{{--                         
+                {{--                         
                         <ul>
                            
                           <li class="product__variant__inventory">
@@ -181,12 +176,23 @@
 
                       <hr />
                       <div class="single__product__swatch single__product__size">
-                        <span class="header">Size :  </span>
-                        <ul>
-                            <li  class="active"><a href="#">x </a></li>
-                            <li><a href="#">xl </a></li>
-                            <li><a href="#">m </a></li>
-                            <li><a href="#">s </a></li>
+                        <span class="header">Variant :  </span>
+                        <ul class="list-sizes">
+                            @foreach ($product->skus as $sku)
+                                <li class="active">
+                                    {{-- {{$sku['variant_name']}}  --}}
+                                    <span 
+                                        onclick="clickVariant()"
+                                        sku_code="{{$sku['sku_code']}}"
+                                        variant_name="{{$sku['variant_name']}}" 
+                                        price="{{$sku['price']}}" 
+                                        image="{{$product->image}}" 
+                                        class="item-size">
+                                        {{$sku['variant_name']}} 
+                                    </span>
+                                </li>
+                                
+                            @endforeach
                         </ul>
                       </div>
 
@@ -235,7 +241,7 @@
                       <div class="single__product__quantity">
                         <div class="qty-container">
                             <button class="qty-btn-minus btn-qty" type="button">- </button>
-                            <input type="text" name="qty"  value="1" class="input-qty" />
+                            <input type="text" name="qty"  value="1" class="input-qty" id="quantity" />
                             <button class="qty-btn-plus btn-qty" type="button">+ </button>
                         </div>
                         <button class="default__button" onclick="addToCart()"><i class="fas fa-shopping-cart"></i> Add to cart </button>
@@ -2179,10 +2185,12 @@
                 alert('Please select a variant');
                 return false;
             }
-            let sku_code = $('.list-sizes').find('.active').attr('sku_code');
-            let variant_name = $('.list-sizes').find('.active').attr('variant_name');
-            let price = $('.list-sizes').find('.active').attr('price');
-            let image = $('.list-sizes').find('.active').attr('image');
+            let activeSpan = $('.list-sizes').find('li.active .item-size');
+
+            let sku_code = activeSpan.attr('sku_code');
+            let variant_name = activeSpan.attr('variant_name');
+            let price = activeSpan.attr('price');
+            let image = activeSpan.attr('image');
 
             let quantity = parseInt($('#quantity').val());
 
@@ -2218,11 +2226,19 @@
         }
 
         function clickVariant() {
+
+            document.querySelectorAll('.item-size').forEach(function(item) {
+                item.classList.remove('active');
+            });
+
+            // তারপর যেই span এ ক্লিক হয়েছে, সেটায় active ক্লাস যোগ করবো
+            event.target.classList.add('active');
+
             setTimeout(() => {
-                let price = $('.list-sizes').find('.active').attr('price');
+                let price =  document.querySelector('.item-size.active').getAttribute('price'); //$('.list-sizes').find('.active').attr('price');
+                
                 $('.price-main').html(price+"{{$config->currency_symbol}}")
                 console.log(price);
-
             }, 10);
         }
     </script>

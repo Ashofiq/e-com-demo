@@ -83,13 +83,17 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="checkoutarea__item prd-name">
-                    <td class="checkoutarea__ctg__type">Product Title × <span>1</span></td>
-                    <td class="checkoutarea__cgt__des">$1,026.00</td>
-                  </tr>
+                  <span class="product-set">
+                    
+                  </span>
+                  
                   <tr class="checkoutarea__item">
                     <td class="checkoutarea__ctg__type">Subtotal</td>
-                    <td class="checkoutarea__cgt__des">$1,026.00</td>
+                    <td class="checkoutarea__cgt__des subtotal">$1,026.00</td>
+                  </tr>
+                  <tr class="checkoutarea__item">
+                    <td class="checkoutarea__itemcrt-total">Total</td>
+                    <td class="checkoutarea__cgt__des prc-total subtotal">$1,029.00</td>
                   </tr>
                   <tr class="checkoutarea__item">
                     <td class="checkoutarea__ctg__type">Shipping</td>
@@ -100,10 +104,7 @@
                       </div>
                     </td>
                   </tr>
-                  <tr class="checkoutarea__item">
-                    <td class="checkoutarea__itemcrt-total">Total</td>
-                    <td class="checkoutarea__cgt__des prc-total">$1,029.00</td>
-                  </tr>
+                
                 </tbody>
               </table>
             </div>
@@ -252,38 +253,27 @@
 
 @section('script')
 <script>
-  // function cartProductSet() {
-  //    const products = cartLS.list();
-  //    console.log(products);
+  function cartProductSet() {
+     const products = cartLS.list();
+     console.log(products);
      
-  //    var html_data = ''
-  //    for (let index = 0; index < products.length; index++) {
-  //        const element = products[index];
-  //        html_data += `<div class="list-items-cart">
-  //                  <div class="item-cart"> 
-  //                    <div class="item-cart-image">
-  //                      <img src="${element.image}" alt="${element.name}"></div>
-  //                      <div class="item-cart-info">
-  //                      <div class="item-cart-info-1">
-  //                        <a class="text-17-medium" href="#"> ${element.name}</a>
-  //                        <p class="box-size">  <span class="body-p2 neutral-medium-dark">
-  //                         variant:   </span><span class="body-p2 neutral-dark">${element.variant}</span></p>
-  //                      </div>
-  //                      <div class="item-cart-info-2"> 
-  //                        <p class="body-p2">৳${element.price} </p>
-  //                      </div>
-  //                    </div>
-  //                  </div>
-  //                </div>`;
-  //    }
+     var html_data = ''
+     for (let index = 0; index < products.length; index++) {
+         const element = products[index];
+         html_data += `
+            <tr class="checkoutarea__item prd-name">
+              <td class="checkoutarea__ctg__type">${element.name} × <span>${element.quantity}</span></td>
+              <td class="checkoutarea__cgt__des">৳${element.price}</td>
+            </tr>
+          `;
+     }
 
-  //    $('.list-items-cart').html(html_data)
-  //    $('.subtotal').html('৳'+ cartLS.total())
+     $('.product-set').html(html_data)
+     $('.subtotal').html('৳' + cartLS.total())
 
+  }
 
-  // }
-
-  // cartProductSet()
+  cartProductSet()
 
   document.getElementById('items').value = JSON.stringify(cartLS.list())
 

@@ -23,19 +23,23 @@
                                 <div style="margin-bottom: 10px;">
                                     @if(isset($product['skus']))
                                         <span style="color: #e63946; font-size: 18px; font-weight: bold;">
-                                            {{number_format($product['skus'][0]['price'], 2)}}{{ $config->currency_symbol }}
+                                            {{number_format($product['skus'][0]['price'], 2)}}
                                         </span>
                                         @if (count($product['skus']) > 1)
-                                            
-                                            <del style="color: #888; font-size: 16px; text-decoration: line-through; margin-left: 8px;">
+                                            - 
+                                            <span style="color: #e63946; font-size: 18px; font-weight: bold;">
                                                 {{number_format(collect($product['skus'])->max('price'), 2)}}{{ $config->currency_symbol }}
-                                            </del>
+                                            </span>
                                         @endif
                                     @endif
                                 </div>
                                 <div style="display: flex; gap: 10px;">
-                                    <button style="flex: 1; height:40px; padding: 5px 10px; background-color: #d90429; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Cart</button>
-                                    <button style="flex: 1; height:40px; padding: 5px 10px; background-color: #3a0ca3; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Buy Now</button>
+                                    <button style="flex: 1; height:40px; padding: 5px 10px; background-color: #d90429; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+                                        Cart
+                                    </button>
+                                    <button style="flex: 1; height:40px; padding: 5px 10px; background-color: #3a0ca3; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+                                        Buy Now
+                                    </button>
                                 </div>
                             </div>
                         </div>
