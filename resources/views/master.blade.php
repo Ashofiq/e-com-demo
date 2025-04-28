@@ -235,7 +235,7 @@
         
                                          <li class="position-static">
                                              <a class='headerarea__has__dropdown' href='#'>Categories
-                                                 {{-- <span class="header__label hot__color">Hot </span> --}}
+                                           
                                              </a>
                                          
                                              <ul class="headerarea__submenu headerarea__megamenu">
@@ -245,8 +245,8 @@
                                                      <ul>
 
                                                          <li>
-                                                             <a href='categories.html'>
-                                                                 <img class="img-fluid" src="{{ $category['image'] }}" alt="Collection" />
+                                                             <a href='{{route('category', $category['slug'])}}'>
+                                                                 <img class="img-fluid" src="{{ $category['image'] }}" alt="Collection" style="width: 200px; height: 200px; object-fit: cover; border-radius: 8px;"/>
                                                              </a>
                                                          </li>
                                                      </ul>
@@ -256,7 +256,7 @@
         
         
                                              </ul>
-                                             {{-- @endforeach --}}
+                                           
         
                                          </li>
         
