@@ -1,4 +1,42 @@
-<section class="section banner-homepage3">
+<div class="herobanner herobanner__3">
+        
+  <div class="herobannerarea__slider slider__default__arrow herobanner__arrow slider__default__dot herobanner__dot">
+        @foreach ($sliders['sliders'] as $slider)
+     <div class="herobannerarea__slider__single position-relative">
+  
+  <div class="herobannerarea__slider__image">
+      <img class="img-fluid" src="{{ $slider['image'] }}" alt="Slide Image" />
+  </div>
+
+  <div class="herobanner__inner__3">
+      <div class="herobanner__text__wraper ltn__slide-animation">
+
+          <h1 class="herobanner__title animated">
+              <strong>{{ $slider['name'] }}</strong>
+          </h1>
+
+          <div class="herobanner__text animated">
+              <p>Enchanting Styles for Dreamy _____. </p>
+          </div>
+
+          <div class="herobanner__button animated">
+              <a href="{{ $slider['button_url'] }}" class="default__button" tabindex="0">
+                  Shop Now
+              </a>
+          </div>
+          
+      </div>
+  </div>
+
+   </div>
+     @endforeach
+  </div>
+</div>
+
+
+
+
+{{-- <section class="section banner-homepage3">
     <div class="container">
       <div class="box-banner-home3">
         <div class="box-swiper">
@@ -28,4 +66,4 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
