@@ -34,8 +34,8 @@
                                     @endif
                                 </div>
                                 <div style="display: flex; gap: 10px;">
-                                    <button style="flex: 1; padding: 10px; background-color: #d90429; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Cart</button>
-                                    <button style="flex: 1; padding: 10px; background-color: #3a0ca3; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Buy Now</button>
+                                    <button style="flex: 1; height:40px; padding: 5px 10px; background-color: #d90429; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Cart</button>
+                                    <button style="flex: 1; height:40px; padding: 5px 10px; background-color: #3a0ca3; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Buy Now</button>
                                 </div>
                             </div>
                         </div>

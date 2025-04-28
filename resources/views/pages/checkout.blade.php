@@ -11,7 +11,127 @@
   .btn-remove-cart{display: none}
 </style>
 
-<div class="section block-breadcrumb">
+
+<!-- breadcrumb__start -->
+<div class="breadcrumb">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="breadcrumb__title">
+          <h1>Checkout</h1>
+          <ul>
+            <li><a href="{{ url('/') }}">Home</a></li>
+            <li class="color__blue">Checkout</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- breadcrumb__end -->
+
+<!-- checkout__section__start -->
+<div class="checkoutarea sp_bottom_100 sp_top_100">
+  <div class="container">
+    <div class="row">
+      <!-- Customer Details -->
+      <div class="col-xl-6 col-lg-6 col-md-12">
+        <div class="checkoutarea__billing">
+          <div class="checkoutarea__billing__heading">
+            <h2>Customer Details</h2>
+          </div>
+          <div class="checkoutarea__billing__form">
+            <form action="{{ route('order') }}" method="post">
+              @csrf
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="checkoutarea__inputbox">
+                    <label for="name" style="color: black;">Customer Name *</label>
+                    <input type="text" id="name" name="name" placeholder="Customer Name" required style="color: black;" />
+                  </div>
+                </div>
+                
+                <div class="col-xl-6">
+                  <div class="checkoutarea__inputbox">
+                    <label for="phone" style="color: black;">Phone Number *</label>
+                    <input type="number" id="phone" name="phone" class="info" placeholder="Phone Number" required style="color: black;"  />
+                  </div>
+                </div>
+                <div class="col-xl-12">
+                  <div class="checkoutarea__inputbox">
+                    <label for="address" style="color: black;" >Address *</label>
+                    <input type="text" id="address" name="address" class="info" placeholder="Address" required  style="color: black;" />
+                  </div>
+                </div>
+              </div>
+          </div> <!-- End of billing form -->
+        </div> <!-- End of billing -->
+      </div>
+
+      <!-- Order Summary -->
+      <div class="col-lg-6 col-md-12 col-12">
+        <div class="checkoutarea__payment__wraper">
+          <div class="checkoutarea__total">
+            <h3>Your Order</h3>
+
+            <div class="checkoutarea__table__wraper" style="overflow-x:auto;">
+              <table class="checkoutarea__table">
+                <thead>
+                  <tr class="checkoutarea__item">
+                    <td class="checkoutarea__ctg__type">Product</td>
+                    <td class="checkoutarea__cgt__des">Total</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="checkoutarea__item prd-name">
+                    <td class="checkoutarea__ctg__type">Product Title × <span>1</span></td>
+                    <td class="checkoutarea__cgt__des">$1,026.00</td>
+                  </tr>
+                  <tr class="checkoutarea__item">
+                    <td class="checkoutarea__ctg__type">Subtotal</td>
+                    <td class="checkoutarea__cgt__des">$1,026.00</td>
+                  </tr>
+                  <tr class="checkoutarea__item">
+                    <td class="checkoutarea__ctg__type">Shipping</td>
+                    <td class="checkoutarea__cgt__des ship-opt">
+                      <div class="checkoutarea__shipp">
+                        <input type="radio" id="pay-toggle" name="ship" value="Cash On Delivery" checked />
+                        <label for="pay-toggle">Cash On Delivery</label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="checkoutarea__item">
+                    <td class="checkoutarea__itemcrt-total">Total</td>
+                    <td class="checkoutarea__cgt__des prc-total">$1,029.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="checkoutarea__payment clearfix">
+            <div class="checkoutarea__payment__toggle">
+              <div class="checkoutarea__payment__total"></div>
+              <div class="checkoutarea__payment__input__box">
+                <input type="hidden" name="source" value="website">
+                <input name="orderDetails" type="hidden" id="items">
+                <input type="submit" class="default__button" value="Place Order ">
+                {{-- <button type="submit" class="default__button">Place Order</button> --}}
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- End of payment wrapper -->
+      </div>
+
+    </div> <!-- End of row -->
+    </form> <!-- Close the form here -->
+  </div> <!-- End of container -->
+</div>
+<!-- checkout__section__end -->
+
+
+{{-- <div class="section block-breadcrumb">
     <div class="container"> 
         <div class="breadcrumbs"> 
             <ul> 
@@ -124,7 +244,7 @@
         </div>
       </form>
     </div>
-</section>
+</section> --}}
 
 
 

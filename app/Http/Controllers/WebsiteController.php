@@ -26,11 +26,7 @@ class WebsiteController extends Controller
             return $this->fetchSlider();
         });
 
-        $categories = Cache::remember('category', now()->addMinutes(1), function () {
-            return $this->fetchCategory();
-        });
-
-        return view('pages.home', compact('products', 'categories', 'config', 'sliders'));
+        return view('pages.home', compact('products', 'config', 'sliders'));
     }
 
     private function fetchProduct()
@@ -45,7 +41,7 @@ class WebsiteController extends Controller
         return $response->json()['data']; 
     }
 
-    private function fetchCategory()
+    public function fetchCategory()
     {
         $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'category');
         return $response->json()['data']; 

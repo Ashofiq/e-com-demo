@@ -16,7 +16,7 @@
           </h1>
 
           <div class="herobanner__text animated">
-              <p>Enchanting Styles for Dreamy _____. </p>
+              {{-- <p>Enchanting Styles for Dreamy _____. </p> --}}
           </div>
 
           <div class="herobanner__button animated">
