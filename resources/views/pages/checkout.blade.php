@@ -107,6 +107,24 @@
                 
                 </tbody>
               </table>
+
+              <div class="box-info-cart-inner">
+                <p class="text-17-medium text-uppercase mb-15 neutral-medium-dark">Shipping </p>
+                <div class="list-radio"> 
+                  <div class="item-radio">
+                    <label>
+                      -> Outside Dhaka {{$config->outside_dhaka}}{{ $config->currency_symbol }}, 
+                      Over Per Kg add: {{ $config->outside_dhaka_over_per_kg }}{{ $config->currency_symbol }}
+                    </label>
+                  </div>
+                  <div class="item-radio">
+                    <label>
+                      -> Inside Dhaka {{ $config->inside_dhaka }}{{ $config->currency_symbol }}, Over Per Kg add: {{ $config->inside_dhaka_over_per_kg }}{{ $config->currency_symbol }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+              
             </div>
           </div>
 
