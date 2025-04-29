@@ -38,7 +38,7 @@
         <br class="d-none d-lg-block" style="color: red">Order No: {{request('order')}}  
         <br class="d-none d-lg-block">
       </h2>
-      <a href="/track-order/ORD-1016" class="btn btn-primary px-4 py-2 mt-3">Track Order</a>
+      <a href="{{ route('trackOrder') }}" class="btn btn-primary px-4 py-2 mt-3">Track Order</a>
 
     </div>
 </section>

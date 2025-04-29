@@ -78,4 +78,20 @@ class WebsiteController extends Controller
     function confirm(Request $request) {
         return view('pages.confirm');
     }
+
+    function trackOrder(Request $request) {
+        $order = [];
+        if ($request->order_no) {
+            try {
+                $order = Http::withHeaders(['token' => $this->token])
+                ->get($this->base_url.'order/'.$request->order_no, $request->all())['data'];
+                return view('pages.trackOrder', ['order' => $order]);
+
+            } catch (\Throwable $th) {
+                return $th->getMessage();
+            }
+           
+        }
+        return view('pages.trackOrder', ['order' => $order]);
+    }
 }
