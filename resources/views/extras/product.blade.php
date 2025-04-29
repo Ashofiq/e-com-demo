@@ -28,16 +28,19 @@
                                         @if (count($product['skus']) > 1)
                                             - 
                                             <span style="color: #e63946; font-size: 18px; font-weight: bold;">
-                                                {{number_format(collect($product['skus'])->max('price'), 2)}}{{ $config->currency_symbol }}
+                                                {{number_format(collect($product['skus'])->max('price'), 2)}}
                                             </span>
                                         @endif
+                                        <span style="color: #e63946; font-size: 18px; font-weight: bold;">
+                                            {{ $config->currency_symbol }}
+                                        </span>
                                     @endif
                                 </div>
                                 <div style="display: flex; gap: 10px;">
-                                    <button style="flex: 1; height:40px; padding: 5px 10px; background-color: #d90429; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+                                    <button onclick="addToCart('', '{{json_encode($product)}}')" style="flex: 1; height:40px; padding: 5px 10px; background-color: #d90429; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
                                         Cart
                                     </button>
-                                    <button style="flex: 1; height:40px; padding: 5px 10px; background-color: #3a0ca3; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+                                    <button onclick="addToCart('buy_now', '{{json_encode($product)}}')" style="flex: 1; height:40px; padding: 5px 10px; background-color: #3a0ca3; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
                                         Buy Now
                                     </button>
                                 </div>
@@ -59,3 +62,48 @@
     
     </div>
 </div>
+
+<script>
+    
+    function addToCart(type, product) {   
+        var pr_ = JSON.parse(product);
+        console.log(pr_);
+        
+        let quantity = 1;
+
+        if (cartLS.exists(pr_.skus[0].sku_code)) {
+            cartLS.update(pr_.skus[0].sku_code,'quantity',quantity)
+        }else{
+            cartLS.add({
+                id: pr_.skus[0].sku_code, 
+                product_id: pr_.id,
+                name: pr_.name, 
+                variant: pr_.skus[0].variant_name,
+                price: pr_.skus[0].price, 
+                sku_code: pr_.skus[0].sku_code,
+                product_sku_code: pr_.skus[0].sku_code,
+                image: pr_.image, 
+                quantity: 1})
+        }
+
+        // global set 
+        cartCount();
+
+        if (type == 'buy_now') {
+            window.location.href = "{{route('checkout')}}"
+            return false;
+        }
+        console.log(cartLS.list());
+        
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: pr_.skus[0].variant_name+" has been added to your cart",
+            showConfirmButton: false,
+            timer: 3000
+        })
+
+        cartProductSet()
+    }
+
+</script>
