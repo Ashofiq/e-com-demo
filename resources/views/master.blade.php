@@ -258,7 +258,7 @@
                                                         <ul>
 
                                                             <li>
-                                                                <a href='categories.html'>
+                                                                <a href='{{route('category', $category['slug'])}}'>
                                                                     <img class="img-fluid" src="{{ $category['image'] }}"
                                                                         alt="Collection" />
                                                                 </a>
