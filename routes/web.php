@@ -13,6 +13,7 @@ Route::get('brand-products/{brandSlug}', [WebsiteController::class, 'productByBr
 Route::get('checkout', [WebsiteController::class, 'checkout'])->name('checkout');
 Route::post('order', [WebsiteController::class, 'order'])->name('order');
 Route::get('confirm', [WebsiteController::class, 'confirm'])->name('confirm');
+Route::get('track-order', [WebsiteController::class, 'trackOrder'])->name('trackOrder');
 
 
 
