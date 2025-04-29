@@ -81,6 +81,7 @@
                 variant: pr_.skus[0].variant_name,
                 price: pr_.skus[0].price, 
                 sku_code: pr_.skus[0].sku_code,
+                product_sku_code: pr_.skus[0].sku_code,
                 image: pr_.image, 
                 quantity: 1})
         }

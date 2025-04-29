@@ -2202,7 +2202,7 @@
                     product_id: "{{$product->id}}",
                     name: "{{$product->name}}", 
                     variant: variant_name,
-                    price: price, sku_code: sku_code,image, quantity})
+                    price: price, product_sku_code: sku_code, sku_code: sku_code,image, quantity})
             }
 
             // global set 

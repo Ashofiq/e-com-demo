@@ -57,6 +57,16 @@
                     <input type="number" id="phone" name="phone" class="info" placeholder="Phone Number" required style="color: black;"  />
                   </div>
                 </div>
+                <div class="col-xl-6">
+                  <div class="checkoutarea__inputbox">
+                    <label for="phone" style="color: black;">District *</label>
+                    <select name="district_id">
+                      @foreach ($districts as $district)
+                        <option value="{{$district['id']}}">{{ $district['name'] }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
                 <div class="col-xl-12">
                   <div class="checkoutarea__inputbox">
                     <label for="address" style="color: black;" >Address *</label>
