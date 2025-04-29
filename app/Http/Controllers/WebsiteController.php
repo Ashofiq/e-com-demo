@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Services\WebsiteService;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class WebsiteController extends Controller
 {
@@ -53,9 +55,11 @@ class WebsiteController extends Controller
     }
 
     public function fetchCategory()
-    {
-        $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'category');
-        return $response->json()['data']; 
+    {   
+        return Cache::remember('fetchCategory', now()->addMinutes(1), function () {
+            $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'category');
+            return $response->json()['data']; 
+        });
     }
 
     function productDetails($slug) {
@@ -67,7 +71,24 @@ class WebsiteController extends Controller
         $data = (new WebsiteService())->fetchCategoryProduct($slug);
         $products = $data['products'];
         $category = $data['category'];
-        return view('pages.category', compact('products', 'category'));
+
+
+
+        $data = $products; // assuming this is your full product list array
+        $page = request()->get('page', 1);
+        $perPage = 10;
+        $offset = ($page - 1) * $perPage;
+
+        $paginatedProducts = new LengthAwarePaginator(
+            array_slice($data, $offset, $perPage),
+            count($data),
+            $perPage,
+            $page,
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
+
+
+        return view('pages.category', compact('paginatedProducts', 'category'));
     }
 
 

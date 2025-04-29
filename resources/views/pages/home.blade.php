@@ -39,7 +39,7 @@
 
 
 <!-- blog__section__start -->
-<div class="blog sp_top_80 sp_bottom_80">
+{{-- <div class="blog sp_top_80 sp_bottom_80">
   <div class="container">
     <div class="row">
         <div class="col-xl-12">
@@ -183,7 +183,7 @@
         </div>
     </div>
 </div>
-</div>
+</div> --}}
 <!-- blog__section__start -->
 
 

@@ -37,10 +37,10 @@
                                     @endif
                                 </div>
                                 <div style="display: flex; gap: 10px;">
-                                    <button onclick="addToCart('', '{{json_encode($product)}}')" style="flex: 1; height:40px; padding: 5px 10px; background-color: #d90429; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+                                    <button onclick="addToCart_single('', '{{json_encode($product)}}')" style="flex: 1; height:40px; padding: 5px 10px; background-color: #d90429; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
                                         Cart
                                     </button>
-                                    <button onclick="addToCart('buy_now', '{{json_encode($product)}}')" style="flex: 1; height:40px; padding: 5px 10px; background-color: #3a0ca3; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+                                    <button onclick="addToCart_single('buy_now', '{{json_encode($product)}}')" style="flex: 1; height:40px; padding: 5px 10px; background-color: #3a0ca3; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
                                         Buy Now
                                     </button>
                                 </div>
@@ -54,7 +54,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="best__selling__button">
-                    <a class="default__button" href="#">View All </a>
+                    <a class="default__button" href="{{route('latestProduct')}}">View All </a>
                 </div>
             </div>
         </div>
@@ -65,45 +65,6 @@
 
 <script>
     
-    function addToCart(type, product) {   
-        var pr_ = JSON.parse(product);
-        console.log(pr_);
-        
-        let quantity = 1;
-
-        if (cartLS.exists(pr_.skus[0].sku_code)) {
-            cartLS.update(pr_.skus[0].sku_code,'quantity',quantity)
-        }else{
-            cartLS.add({
-                id: pr_.skus[0].sku_code, 
-                product_id: pr_.id,
-                name: pr_.name, 
-                variant: pr_.skus[0].variant_name,
-                price: pr_.skus[0].price, 
-                sku_code: pr_.skus[0].sku_code,
-                product_sku_code: pr_.skus[0].sku_code,
-                image: pr_.image, 
-                quantity: 1})
-        }
-
-        // global set 
-        cartCount();
-
-        if (type == 'buy_now') {
-            window.location.href = "{{route('checkout')}}"
-            return false;
-        }
-        console.log(cartLS.list());
-        
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: pr_.skus[0].variant_name+" has been added to your cart",
-            showConfirmButton: false,
-            timer: 3000
-        })
-
-        cartProductSet()
-    }
+    
 
 </script>

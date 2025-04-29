@@ -145,34 +145,28 @@
                     </div>
                   </div> --}}
                 
+                    <hr />
+                        <div class="single__product__special__feature">
+                            <ul>
+                                @if ( !empty($product->brand))
+                                    <li class="product__variant__inventory">
+                                        <strong class="inventory__title">Brand:</strong>
+                                        <span class="variant__inventory">{{ $product->brand['name'] }}</span>
+                                    </li>
+                                @endif
 
-                {{--                         
-                        <ul>
-                           
-                          <li class="product__variant__inventory">
-                            <strong class="inventory__title">Availability: </strong>
-                            <span class="variant__inventory">17 left in stock </span>
-                          </li>
-                         
-                            <li>
-                            <strong>SKU: </strong>
-                            <span class="variant__sku">{{$sku['sku_code']}} </span>
-                          </li>
-                          <li>
-                            <strong>Vendor: </strong> 
-                            <span>
-                              <a href="#">Vendor B </a>
-                            </span>
-                          </li>
-                          <li>
-                            <strong>Type: </strong> 
-                            <span>
-                              <a href="#">Type B </a>
-                            </span>
-                          </li>
-                        </ul>  --}}
-                  
-                      </div>
+                                @if ($product->category != null)
+                                    <li class="product__variant__inventory">
+                                        <strong class="inventory__title">Category:</strong>
+                                        <span class="variant__inventory">{{ $product->category['name'] }}</span>
+                                    </li>
+                                @endif
+                          
+                            </ul>
+                        </div>
+
+
+                    </div>
 
                       <hr />
                       <div class="single__product__swatch single__product__size">

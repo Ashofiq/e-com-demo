@@ -57,10 +57,19 @@
                     <input type="number" id="phone" name="phone" class="info" placeholder="Phone Number" required style="color: black;"  />
                   </div>
                 </div>
-                <div class="col-xl-6">
+                <div class="col-xl-12">
                   <div class="checkoutarea__inputbox">
                     <label for="phone" style="color: black;">District *</label>
-                    <select name="district_id">
+                    <select name="district_id" style="
+                          border: 1px solid var(--borderColor);
+                          font-size: 14px;
+                          height: 50px;
+                          line-height: 50px;
+                          vertical-align: middle;
+                          width: 100%;
+                          padding: 0 20px;
+                          margin-bottom: 20px;
+                      ">
                       @foreach ($districts as $district)
                         <option value="{{$district['id']}}">{{ $district['name'] }}</option>
                       @endforeach
@@ -114,27 +123,29 @@
                       </div>
                     </td>
                   </tr>
+
+                  <tr class="checkoutarea__item">
+                    <td class="checkoutarea__ctg__type">Outside Dhaka</td>
+                    <td class="checkoutarea__cgt__des ship-opt">
+                      <div class="checkoutarea__shipp">
+                        <label for="pay-toggle">{{$config->outside_dhaka}}{{ $config->currency_symbol }}</label>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr class="checkoutarea__item">
+                    <td class="checkoutarea__ctg__type">Inside Dhaka</td>
+                    <td class="checkoutarea__cgt__des ship-opt">
+                      <div class="checkoutarea__shipp">
+                        <label for="pay-toggle"> {{ $config->inside_dhaka }}{{ $config->currency_symbol }}</label>
+                      </div>
+                    </td>
+                  </tr>
                 
                 </tbody>
               </table>
 
-              <div class="box-info-cart-inner">
-                <p class="text-17-medium text-uppercase mb-15 neutral-medium-dark">Shipping </p>
-                <div class="list-radio"> 
-                  <div class="item-radio">
-                    <label>
-                      -> Outside Dhaka {{$config->outside_dhaka}}{{ $config->currency_symbol }}, 
-                      Over Per Kg add: {{ $config->outside_dhaka_over_per_kg }}{{ $config->currency_symbol }}
-                    </label>
-                  </div>
-                  <div class="item-radio">
-                    <label>
-                      -> Inside Dhaka {{ $config->inside_dhaka }}{{ $config->currency_symbol }}, Over Per Kg add: {{ $config->inside_dhaka_over_per_kg }}{{ $config->currency_symbol }}
-                    </label>
-                  </div>
-                </div>
-              </div>
-              
+         
             </div>
           </div>
 

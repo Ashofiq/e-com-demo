@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Index | Minimalin eCommerce _________ 5 Template. </title>
+    <title> {{$config->company_name}} </title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="{{$config->logo}}" />
@@ -54,7 +54,7 @@
                                         <path fill="none" stroke="currentColor" stroke-linecap="round"
                                             stroke-linejoin="round" stroke-width="32" d="M112 160l144 112 144-112">
                                         </path>
-                                    </svg>example@example.com
+                                    </svg>{{$config->email}}
                                 </li>
                                 <li>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewbox="0 0 512 512">
@@ -64,7 +64,7 @@
                                             stroke-linejoin="round" stroke-width="32"></path>
                                         <circle cx="256" cy="192" r="48" fill="none" stroke="currentColor"
                                             stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></circle>
-                                    </svg>City, State, ZIP Code
+                                    </svg>{{$config->phone}}
                                 </li>
                             </ul>
 
@@ -976,8 +976,7 @@
                             <div class="footer__widget">
                                 <h4 class="footer__title">About Us. </h4>
                                 <div class="footer__content">
-                                    <p>Minimal E-Commerce is a _______ and innovative online retail ________ that offers
-                                        a wide _____ of products to customers _________. </p>
+                                    <p>At FurryBD, we’re passionate about your cat’s health and happiness. That’s why we bring you high-quality, vet-approved cat food from trusted brands—all in one place, delivered right to your door. Whether you're raising a playful kitten or caring for a senior feline, we've got the perfect meal for every meow. </p>
                                 </div>
 
 
@@ -1041,7 +1040,7 @@
                     <div class="row">
                         <div class="col-12 text-center">
                             <div class="copyright__text">
-                                <p>© 2024 <strong>Minimalin </strong>. All rights reserved. </p>
+                                <p>© {{date('Y')}} <strong>{{$config->company_name}} </strong>. All rights reserved. </p>
                             </div>
                         </div>
                     </div>
@@ -1121,6 +1120,47 @@
         function removeItem(id) {
             cartLS.remove(id)
             window.location.reload();
+        }
+
+        function addToCart_single(type, product) {   
+            var pr_ = JSON.parse(product);
+            console.log(pr_);
+            
+            let quantity = 1;
+
+            if (cartLS.exists(pr_.skus[0].sku_code)) {
+                cartLS.update(pr_.skus[0].sku_code,'quantity',quantity)
+            }else{
+                cartLS.add({
+                    id: pr_.skus[0].sku_code, 
+                    product_id: pr_.id,
+                    name: pr_.name, 
+                    variant: pr_.skus[0].variant_name,
+                    price: pr_.skus[0].price, 
+                    sku_code: pr_.skus[0].sku_code,
+                    product_sku_code: pr_.skus[0].sku_code,
+                    image: pr_.image, 
+                    quantity: 1})
+            }
+
+            // global set 
+            cartCount();
+
+            if (type == 'buy_now') {
+                window.location.href = "{{route('checkout')}}"
+                return false;
+            }
+            console.log(cartLS.list());
+            
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: pr_.skus[0].variant_name+" has been added to your cart",
+                showConfirmButton: false,
+                timer: 3000
+            })
+
+            cartProductSet()
         }
     </script>
 

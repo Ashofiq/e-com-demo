@@ -45,19 +45,24 @@ class WebsiteService
 
     function fetchCategoryProduct($category_slug)
     {
-        $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'category-products/'.$category_slug);
-        if ($response->json() != null) {
-            return $response->json()['data']; 
-        }
-        return ['products' => [],'category'=> []];
+        return Cache::remember('fetchCategoryProduct', now()->addMinutes(1), function () use($category_slug) {
+            $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'category-products/'.$category_slug);
+            if ($response->json() != null) {
+                return $response->json()['data']; 
+            }
+            return ['products' => [],'category'=> []];
+        });
+        
     }
 
     function fetchBrandProduct($brand_slug)
     {
-        $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'brand-products/'.$brand_slug);
-        if ($response->json() != null) {
-            return $response->json()['data']; 
-        }
-        return ['products' => [],'brand'=> []];
+        return Cache::remember('fetchBrandProduct', now()->addMinutes(1), function () use($brand_slug) {
+            $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'brand-products/'.$brand_slug);
+            if ($response->json() != null) {
+                return $response->json()['data']; 
+            }
+            return ['products' => [],'brand'=> []];
+        });
     }
 }
