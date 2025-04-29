@@ -51,4 +51,13 @@ class WebsiteService
         }
         return ['products' => [],'category'=> []];
     }
+
+    function fetchBrandProduct($brand_slug)
+    {
+        $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'brand-products/'.$brand_slug);
+        if ($response->json() != null) {
+            return $response->json()['data']; 
+        }
+        return ['products' => [],'brand'=> []];
+    }
 }

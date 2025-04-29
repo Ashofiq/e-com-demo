@@ -15,6 +15,13 @@
 
 
 
+            <!-- brand__start -->
+        
+            @include('extras.brand')
+            <!-- brand__end -->
+
+
+
       <!-- banner__section__start -->
 
       @include('extras.category')

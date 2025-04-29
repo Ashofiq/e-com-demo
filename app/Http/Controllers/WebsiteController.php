@@ -22,16 +22,27 @@ class WebsiteController extends Controller
             return $this->fetchProduct();
         });
 
+        $brands = Cache::remember('brand', now()->addMinutes(1), function () {
+            return $this->fetchBrand();
+        });
+
         $sliders = Cache::remember('slider', now()->addMinutes(1), function () {
             return $this->fetchSlider();
         });
 
-        return view('pages.home', compact('products', 'config', 'sliders'));
+        return view('pages.home', compact('products', 'config', 'sliders','brands'));
     }
 
     private function fetchProduct()
     {
         $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'latest-product');
+        return $response->json()['data']; 
+    }
+
+
+    private function fetchBrand()
+    {
+        $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'brand');
         return $response->json()['data']; 
     }
 
@@ -58,6 +69,16 @@ class WebsiteController extends Controller
         $category = $data['category'];
         return view('pages.category', compact('products', 'category'));
     }
+
+
+    function productByBrand($brandSlug) {
+        $data = (new WebsiteService())->fetchBrandProduct($brandSlug);
+        $products = $data['products'];
+        $brand = $data['brand'];
+        return view('pages.brand', compact('products', 'brand'));
+    }
+    
+
 
     function products() {
         return view('pages.products');

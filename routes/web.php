@@ -9,6 +9,7 @@ Route::get('product/{slug}', [WebsiteController::class, 'productDetails'])->name
 Route::get('products', [WebsiteController::class, 'products'])->name('products');
 
 Route::get('category/{slug}', [WebsiteController::class, 'productByCategory'])->name('category');
+Route::get('brand-products/{brandSlug}', [WebsiteController::class, 'productByBrand'])->name('brand-products');
 Route::get('checkout', [WebsiteController::class, 'checkout'])->name('checkout');
 Route::post('order', [WebsiteController::class, 'order'])->name('order');
 Route::get('confirm', [WebsiteController::class, 'confirm'])->name('confirm');

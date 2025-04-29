@@ -22,6 +22,10 @@
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/futura-std-4.css" />
     <link rel="stylesheet" href="{{asset('/')}}frontend/css/slick.css" />
     <link rel="stylesheet" href="{{asset('/')}}frontend/css/style.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
     <script src="https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js"
         type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -286,6 +290,8 @@
 
 
                                         </li>
+
+                                      
 
 
                                         <li><a class="headerarea__has__dropdown" href="#">Pages

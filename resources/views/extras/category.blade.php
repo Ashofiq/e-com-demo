@@ -1,21 +1,39 @@
-<div class="collection__2 sp_bottom_50 sp_top_80">
+<div class="best__selling" style="padding-bottom: 40px;">
   <div class="container">
-     <div class="row grid__responsive collections__slider__active__5 row__custom__class slider__default__arrow">
-         @foreach ($categories as $category)
-         <div class="col-xl-4 column__custom__class">
-         <div class="collection__single__2">
-             <a href="{{route('category', $category['slug'])}}" class="collection__img__2">
-                 <img src="{{$category['image']}}" alt="{{$category['name']}}"   style="width: 200px; height: 200px; object-fit: cover;">
-             </a>
-             <div class="collection__text__2">
-                 <h5><a href="{{route('category', $category['slug'])}}" tabindex="0">{{$category['name']}} </a></h5>
-             </div>
-         </div>
-       </div>
-       @endforeach
-     </div>
- </div>
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="section__title" style="padding: 0 !important; margin-bottom: 20px;">
+          <h2 style="margin: 0;">Category</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="collection__2" style="padding-top: 40px; padding-bottom: 30px;">
+    <div class="container">
+      <div class="row grid__responsive collections__slider__active__5 row__custom__class slider__default__arrow">
+        @foreach ($categories as $category)
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 column__custom__class" style="margin-bottom: 20px;">
+          <div class="collection__single__2" style="padding: 10px;">
+            <a href="{{ route('category', $category['slug']) }}" class="collection__img__2" style="display: block; margin-bottom: 10px;">
+              <img src="{{ $category['image'] }}" alt="Category: {{ $category['name'] }}" style="width: 200px; height: 200px; object-fit: cover;" loading="lazy">
+            </a>
+            <div class="collection__text__2" style="text-align: center;">
+              <h5 style="margin: 0;">
+                <a href="{{ route('category', $category['slug']) }}" tabindex="0" style="text-decoration: none; color: inherit;">
+                  {{ $category['name'] }}
+                </a>
+              </h5>
+            </div>
+          </div>
+        </div>
+        @endforeach
+      </div>
+    </div>
+  </div>
 </div>
+
+
 
 {{-- <section class="section box-category-type-2">
     <div class="container"> 
