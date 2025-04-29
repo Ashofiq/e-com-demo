@@ -17,34 +17,34 @@ class CustomerAuthController extends Controller
         return view('customer.login');
     }
 
+
+    public function register()
+    {
+        return view('customer.register');
+    }
+
     
 
     
     public function loginCheck(Request $request)
     {
-        // Validate the incoming request
         $request->validate([
-            'user_name' => 'required|string',
+            'email' => 'required|string',
             'password' => 'required|string',
         ]);
     
-        // Try to find the user by email or mobile number
-        $user = User::where('email', $request->user_name)
-                    ->orWhere('phone', $request->user_name)
+        $user = User::where('email', $request->email)
+                    ->orWhere('phone', $request->email)
                     ->first();
     
-        // Check if user exists and password is correct
         if ($user && Hash::check($request->password, $user->password)) {
-            // Log the user in
             Auth::login($user);
-    
-            // Redirect to the my-dashboard page
             return redirect('/my-dashboard');
         }
     
-        // If authentication fails, return back with an error message
-        return back()->withErrors(['user_name' => 'Invalid credentials']);
+        return back()->withErrors(['email' => 'Invalid credentials']);
     }
+    
     
 
 
@@ -69,7 +69,7 @@ class CustomerAuthController extends Controller
                 'phone' => $request->phone,
                 'password' => Hash::make($request->password),
             ]);
-            return redirect('/my-dashboard');
+            return redirect('/login');
     
         } catch (\Illuminate\Validation\ValidationException $e) {
             // If validation fails, dump the validation errors
