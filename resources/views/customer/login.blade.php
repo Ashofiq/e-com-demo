@@ -8,7 +8,106 @@
 
 @section('main-section')
 
-<!-- Breadcrumb Section -->
+<!-- breadcrumb__start -->
+<div class="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="breadcrumb__title">
+                    <h1>Login</h1>
+                    <ul>
+                        <li>
+                            <a href="{{ url('/') }}">Home</a>
+                        </li>
+                        <li class="color__blue">Login</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb__end -->
+
+<!-- login__section__start -->
+<div class="loginarea sp_bottom_80 sp_top_80">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 offset-md-2 loginarea__col">
+                <button class="btn btn-primary col-12 active single__tab__link"
+                        data-bs-toggle="tab"
+                        data-bs-target="#login_tab"
+                        type="button"
+                        role="tab"
+                        aria-controls="login_tab"
+                        aria-selected="true"
+                        tabindex="0">
+                    Login
+                </button>
+            </div>
+
+            <div class="tab-content tab__content__wrapper" id="myTabContent">
+                <div class="tab-pane fade show active" id="login_tab" role="tabpanel" aria-labelledby="login_tab">
+                    <div class="col-xl-8 offset-md-2 loginarea__col">
+                        <div class="loginarea__wraper">
+                            <div class="loginarea__heading">
+                                <h5 class="login__title">Login</h5>
+                                <p class="login__description">
+                                    Don't have an account? 
+                                    <a href="{{ route('register') }}" data-bs-toggle="modal" data-bs-target="#registerModal">Sign up for free</a>
+                                </p>
+                            </div>
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul class="mb-0">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <form action="{{ route('login-check') }}" method="POST">
+                                @csrf
+                                <div class="loginarea__form">
+                                    <label class="form__label" for="email"> Email</label>
+                                    <input id="email" name="email" class="common__login__input" type="text" placeholder="Your username or email" required />
+                                </div>
+
+                                <div class="loginarea__form">
+                                    <label class="form__label" for="password">Password</label>
+                                    <input id="password" name="password" class="common__login__input" type="password" placeholder="Password" required  />
+                                </div>
+
+                                <div class="loginarea__form d-flex justify-content-between flex-wrap gap-2">
+                                    <div class="form__check">
+                                        <input type="checkbox" name="remember" id="login__privacy" />
+                                        <label for="login__privacy">Remember Me</label>
+                                    </div>
+                                    <div class="text-end login__form__link">
+                                        <a href="#">Forgot your password?</a>
+                                    </div>
+                                </div>
+
+                                <div class="loginarea__button text-center">
+                                    <button type="submit" class="default__button">Log In</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+<!-- login__section__end -->
+
+@endsection
+
+
+
+{{-- <!-- Breadcrumb Section -->
 <div class="page-header py-4 bg-light">
     <div class="container">
         <nav aria-label="breadcrumb">
@@ -123,6 +222,6 @@
             </div>
         </div>
     </div> 
-</section>
+</section> --}}
 
-@endsection
+{{-- @endsection --}}
