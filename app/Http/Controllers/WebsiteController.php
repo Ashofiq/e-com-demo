@@ -100,6 +100,10 @@ class WebsiteController extends Controller
         return view('pages.confirm');
     }
 
+    function contactUs(Request $request) {
+        return view('pages.contact');
+    }
+
     function trackOrder(Request $request) {
         $order = [];
         if ($request->order_no) {

@@ -11,6 +11,8 @@ Route::get('products', [WebsiteController::class, 'products'])->name('products')
 Route::get('category/{slug}', [WebsiteController::class, 'productByCategory'])->name('category');
 Route::get('brand-products/{brandSlug}', [WebsiteController::class, 'productByBrand'])->name('brand-products');
 Route::get('checkout', [WebsiteController::class, 'checkout'])->name('checkout');
+Route::get('latest-product', [WebsiteController::class, 'latestProduct'])->name('latestProduct');
+Route::get('contact-us', [WebsiteController::class, 'contactUs'])->name('contact');
 Route::post('order', [WebsiteController::class, 'order'])->name('order');
 Route::get('confirm', [WebsiteController::class, 'confirm'])->name('confirm');
 Route::get('track-order', [WebsiteController::class, 'trackOrder'])->name('trackOrder');

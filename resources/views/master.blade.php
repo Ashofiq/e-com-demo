@@ -278,6 +278,11 @@
 
                                         </li>
 
+                                        <li><a href='about.html'>Shop By Product </a> </li>
+                                        <li><a href='{{ route('trackOrder') }}'>Track Order </a> </li>
+
+                                        <li><a href='{{ route('contact') }}'>Contact Us </a> </li>
+
                                         {{-- <li><a href='about.html'>About </a> </li>
 
 
