@@ -1,16 +1,17 @@
 <div class="best__selling" style="padding-bottom: 40px;">
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-        <div class="section__title" style="padding: 0 !important; margin-bottom: 20px;">
-          <h2 style="margin: 0;">Category</h2>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="collection__2" style="padding-top: 40px; padding-bottom: 30px;">
     <div class="container">
+
+      
+      <div class="row">
+        <div class="col-xl-12">
+            <div class="section__title text-center">
+                <h2>Category</h2>
+            </div>
+        </div>
+      </div>
+
       <div class="row grid__responsive collections__slider__active__5 row__custom__class slider__default__arrow">
         @foreach ($categories as $category)
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 column__custom__class" style="margin-bottom: 20px;">

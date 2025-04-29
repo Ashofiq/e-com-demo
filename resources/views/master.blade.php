@@ -141,7 +141,7 @@
                     <div class="row common__row position-relative">
                         <div class="col-xl-2 col-lg-2 col-md-6">
                             <div class="headerarea__logo">
-                                <a href="{{url('/')}}"><img src="{{$config->logo}}" alt="" /></a>
+                                <a href="{{url('/')}}"><img style="height: 66px" src="{{$config->logo}}" alt="" /></a>
                             </div>
                         </div>
 
