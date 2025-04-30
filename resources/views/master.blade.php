@@ -185,7 +185,7 @@
 
                                         </li>
 
-                                        <li><a href='/'>Shop By Brand </a> </li>
+                                        <li><a href='{{route('brands')}}'>Shop By Brand </a> </li>
                                         <li><a href='{{ route('trackOrder') }}'>Track Order </a> </li>
 
                                         <li><a href='{{ route('contact') }}'>Contact Us </a> </li>
@@ -394,7 +394,7 @@
 
                     <div class="mobile__logo">
                         <a href='index.html'>
-                            <img src="{{asset('/')}}frontend/img/logo/logo__1.png" alt="Logo" />
+                            <img src="{{ $config->logo }}" alt="Logo" />
                         </a>
                     </div>
 
