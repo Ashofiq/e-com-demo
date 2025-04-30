@@ -14,14 +14,14 @@
 
       <div class="row grid__responsive collections__slider__active__5 row__custom__class slider__default__arrow">
         @foreach ($categories as $category)
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 column__custom__class" style="margin-bottom: 20px;">
-          <div class="collection__single__2" style="padding: 10px;">
-            <a href="{{ route('category', $category['slug']) }}" class="collection__img__2" style="display: block; margin-bottom: 10px;">
-              <img src="{{ $category['image'] }}" alt="Category: {{ $category['name'] }}" style="width: 200px; height: 200px; object-fit: cover;" loading="lazy">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 column__custom__class">
+          <div class="collection__single__2">
+            <a href="{{ route('category', $category['slug']) }}" class="collection__img__2">
+              <img src="{{ $category['image'] }}" alt="Category: {{ $category['name'] }}" loading="lazy">
             </a>
             <div class="collection__text__2" style="text-align: center;">
               <h5 style="margin: 0;">
-                <a href="{{ route('category', $category['slug']) }}" tabindex="0" style="text-decoration: none; color: inherit;">
+                <a href="{{ route('category', $category['slug']) }}" tabindex="0" >
                   {{ $category['name'] }}
                 </a>
               </h5>
