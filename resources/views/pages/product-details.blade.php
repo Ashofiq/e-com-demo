@@ -472,25 +472,7 @@
             </div>
                 <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video">
                   
-                        <p>
-                           As opposed __ using 'Content here, content ____', making it look like ________
-                           English. Many desktop __________ packages and web page _______ now use Lorem
-                           _____ as their default model ____, and a search for '_____ ipsum' will uncover
-                           ____ web sites still in _____ infancy. Various versions have _______ over the
-                           years, _________ by accident, sometimes on _______ injected humour and the
-                           like. It is a ____ established fact that a ______ will be distracted by ___
-                           readable content of _ page when looking at ___ layout. The point of _____ Lorem
-                           Ipsum is ____ it has a more-or-less ______ distribution of letters
-                        </p>
-                        <p>
-                           If you ___ going to use a _______ of Lorem Ipsum, you ____ to be sure there
-                           isn't anything embarrassing hidden __ the middle of text. ___ the Lorem Ipsum
-                           __________ on the Internet tend __ repeat predefined chunks as _________, making
-                           this the _____ true generator on the ________. It uses a dictionary __ over 200
-                           Latin _____, combined with a handful __ model sentence structures, to ________
-                           Lorem Ipsum which _____ reasonable. The generated Lorem _____ is therefore
-                           always ____ from repetition, injected humour, __ non-characteristic words etc
-                        </p>
+                    ...
            
                 </div>
                 {{-- <div class="tab-pane fade " id="product__Type" role="tabpanel" aria-labelledby="product__Type">
@@ -549,7 +531,7 @@
 <!-- discription__section__end -->
 
         <!-- related__section__start -->
-        <div class="related__section sp_bottom_50">
+        {{-- <div class="related__section sp_bottom_50">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
@@ -1309,7 +1291,7 @@
                 </div>
 
             </div>
-         </div>
+         </div> --}}
         <!-- related__section__start -->
 
         <!-- related__section__start -->
