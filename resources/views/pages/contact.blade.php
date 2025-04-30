@@ -37,14 +37,14 @@
             <div class="col-xl-4 col-lg-4 col-md-6 col-12">
                 <div class="contactarea__single">
                     <h3>Email Address </h3>
-                    <p>example@example.com  <br />example2@example.com </p>
+                    <p>{{ $config->email }} </p>
                 </div>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-6 col-12">
                 <div class="contactarea__single">
                     <h3>Phone Number </h3>
-                    <p>+0123-456789  <br />+9879-654321 </p>
+                    <p>{{ $config->phone }} </p>
                 </div>
             </div>
 
@@ -52,7 +52,7 @@
             <div class="col-xl-4 col-lg-4 col-md-6 col-12">
                 <div class="contactarea__single">
                     <h3>Office Address  </h3>
-                    <p>Your Street Address, City ____, State,  <br />ZIP Code, Country. </p>
+                    <p> idsgijdpg </p>
                 </div>
             </div>
 

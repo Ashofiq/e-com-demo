@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomerAuthController;
 Route::get('/', [WebsiteController::class, 'home']);
 Route::get('product/{slug}', [WebsiteController::class, 'productDetails'])->name('product.details');
 Route::get('products', [WebsiteController::class, 'products'])->name('products');
+Route::get('brands', [WebsiteController::class, 'brands'])->name('brands');
 
 Route::get('category/{slug}', [WebsiteController::class, 'productByCategory'])->name('category');
 Route::get('brand-products/{brandSlug}', [WebsiteController::class, 'productByBrand'])->name('brand-products');
@@ -20,10 +21,10 @@ Route::get('track-order', [WebsiteController::class, 'trackOrder'])->name('track
 
 
 // CustomerAuthController
-Route::get('/login',[CustomerAuthController::class,'login'])->name('login');
-Route::get('/register',[CustomerAuthController::class,'register'])->name('register');
-Route::post('/login-check',[CustomerAuthController::class,'loginCheck'])->name('login-check');
-Route::post('/new-customer',[CustomerAuthController::class,'newCustomer'])->name('new-customer');
+Route::get('/login',[WebsiteController::class,'login'])->name('login');
+Route::get('/register',[WebsiteController::class,'register'])->name('register');
+// Route::post('/login-check',[CustomerAuthController::class,'loginCheck'])->name('login-check');
+Route::post('/register',[WebsiteController::class,'registerCustomer'])->name('new.customer');
 Route::get('/customer-logout',[CustomerAuthController::class,'logout'])->name('customer-logout');
 
 

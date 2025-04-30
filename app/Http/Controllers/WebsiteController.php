@@ -98,11 +98,35 @@ class WebsiteController extends Controller
         $brand = $data['brand'];
         return view('pages.brand', compact('products', 'brand'));
     }
-    
 
+
+    function register() {
+        return view('customer.register');
+    }
+    
+    function registerCustomer(Request $request) {
+        $request->validate([
+           'name' => 'required|string|max:255',
+           'email' => 'required|email|unique:users,email',
+           'phone' => 'required', // Only required, not unique
+           'password' => 'required|min:6|confirmed', // Ensure you have password_confirmation in your form
+       ]);
+
+       $response = Http::withHeaders(['token' => $this->token])
+       ->post($this->base_url.'register', $request->all());
+       return $response->json()['data']; 
+      
+   }
 
     function products() {
         return view('pages.products');
+    }
+
+    function brands() {
+        $brands = Cache::remember('brand', now()->addMinutes(1), function () {
+            return $this->fetchBrand();
+        });
+        return view('pages.brand-details',compact('brands'));
     }
 
     function checkout() {

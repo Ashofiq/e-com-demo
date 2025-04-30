@@ -151,9 +151,9 @@
                             <div class="headerarea__main__menu ">
                                 <nav>
                                     <ul>
-                                        <li><a class='headerarea__has__dropdown ' href='{{url('/')}}'>Home
-                                            </a>
-                                            {{-- <ul class="headerarea__submenu">
+                                        <li><a class='' href='{{url('/')}}'>Home </a></li>
+                                           
+                                        {{-- <ul class="headerarea__submenu">
                                                 <li><a href='index.html'>Fashion 1 </a></li>
                                                 <li><a href='home-2.html'>Fashion 2 </a></li>
                                                 <li><a href='home-3.html'>Fashion 3 </a></li>
@@ -164,7 +164,7 @@
                                                 <li><a href='home-8.html'>Single Product </a></li>
                                                 <li><a href='home-9-dark.html'>Home Dark </a></li>
                                             </ul> --}}
-                                        </li>
+                                        {{-- </li> --}}
 
                                         {{-- <li class="position-static">
                                             <a class='headerarea__has__dropdown' href='shop.html'>Shop
@@ -278,7 +278,7 @@
 
                                         </li>
 
-                                        <li><a href='about.html'>Shop By Product </a> </li>
+                                        <li><a href='{{ route('brands') }}'>Shop By Brand </a> </li>
                                         <li><a href='{{ route('trackOrder') }}'>Track Order </a> </li>
 
                                         <li><a href='{{ route('contact') }}'>Contact Us </a> </li>
@@ -388,7 +388,7 @@
                                     </li>
 
 
-                                    {{-- <li>
+                                    <li>
                                         <div class="setting__wrap cursor__pointer">
                                             <div class="setting__wrap__active">
 
@@ -406,7 +406,7 @@
 
                                             </div>
                                         </div>
-                                    </li> --}}
+                                    </li>
 
                                     <li>
                                         <div class="headermiddle__bar cursor__pointer">
@@ -849,20 +849,18 @@
 
                 <div class="setting__wrap__heading">
                     <h6>
-                        <a href="#">Account </a>
+                        <a href="{{ route('register') }}">Register </a>
                     </h6>
                 </div>
                 <div class="setting__wrap__list__inner">
                     <ul>
                         <li>
-                            <a href='login.html'>Login </a>
+                            <a href='{{ route('login') }}'>Login </a>
                         </li>
                         <li>
-                            <a href='cart.html'>Cart </a>
+                            <a href='cart.html'>Profile </a>
                         </li>
-                        <li>
-                            <a href='wishlist.html'>Wishlist </a>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
