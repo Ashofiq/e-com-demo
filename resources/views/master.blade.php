@@ -6,8 +6,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title> {{$config->company_name}} </title>
-    <meta name="description" content="" />
+    <title> @yield('title') | {{$config->company_name}} </title>
+    <meta name="title" content="@yield('title')" />
+    <meta name="description" content="@yield('description')" />
+    <meta name="image" content="@yield('image')" />
+    <meta name="url" content="@yield('url')" />
+    <meta name="keywords" content="@yield('keywords')" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="{{$config->logo}}" />
     {{--
@@ -151,107 +155,10 @@
                             <div class="headerarea__main__menu ">
                                 <nav>
                                     <ul>
-                                        <li><a class='headerarea__has__dropdown ' href='{{url('/')}}'>Home
-                                            </a>
-                                            {{-- <ul class="headerarea__submenu">
-                                                <li><a href='index.html'>Fashion 1 </a></li>
-                                                <li><a href='home-2.html'>Fashion 2 </a></li>
-                                                <li><a href='home-3.html'>Fashion 3 </a></li>
-                                                <li><a href='home-4.html'>Beauty </a></li>
-                                                <li><a href='home-5.html'>Jewelry </a></li>
-                                                <li><a href='home-6.html'>T-Shirt </a></li>
-                                                <li><a href='home-7.html'>Electronics </a></li>
-                                                <li><a href='home-8.html'>Single Product </a></li>
-                                                <li><a href='home-9-dark.html'>Home Dark </a></li>
-                                            </ul> --}}
-                                        </li>
-
-                                        {{-- <li class="position-static">
-                                            <a class='headerarea__has__dropdown' href='shop.html'>Shop
-                                                <span class="header__label">New </span>
-                                            </a> --}}
-
-                                            {{-- <ul class="headerarea__submenu headerarea__megamenu">
-                                                <li class="mega__menu__li">
-                                                    <a class='menu__title' href='categories.html'>Women's Fashion </a>
-                                                    <ul>
-                                                        <li><a href="#">Dresses </a></li>
-                                                        <li><a href="#">Tops & Blouses </a></li>
-                                                        <li><a href="#">Sweaters & Cardigans </a></li>
-                                                        <li><a href="#">Jackets & Coats </a></li>
-                                                        <li><a href="#">Pants & Jeans </a></li>
-                                                        <li><a href="#">Skirts </a></li>
-                                                        <li><a href="#">Active wear </a></li>
-                                                        <li><a href="#">Lingerie & Sleepwear </a></li>
-                                                    </ul>
-                                                </li>
-
-
-                                                <li class="mega__menu__li">
-                                                    <a class='menu__title' href='categories.html'>Men's Fashion </a>
-                                                    <ul>
-                                                        <li><a href="#">Shirts </a></li>
-                                                        <li>
-                                                            <a href="#">T-Shirts & Polos
-                                                                <span class="header__label hot__color">Hot </span>
-                                                            </a>
-                                                        </li>
-                                                        <li><a href="#">Sweaters & Hoodies </a></li>
-                                                        <li><a href="#">Jackets & Blazers </a></li>
-                                                        <li><a href="#">Pants & Chinos </a></li>
-                                                        <li><a href="#">Jeans </a></li>
-                                                        <li><a href="#">Suits & Formal wear </a></li>
-                                                        <li><a href="#">Active wear </a></li>
-                                                    </ul>
-                                                </li>
-
-
-                                                <li class="mega__menu__li">
-                                                    <a class='menu__title' href='categories.html'>Accessories </a>
-                                                    <ul>
-
-                                                        <li><a href="#">Bags & Purses </a></li>
-                                                        <li><a href="#">Hats & Caps </a></li>
-                                                        <li><a href="#">Scarves & Shawls </a></li>
-                                                        <li><a href="#">Belts & Suspenders </a></li>
-                                                        <li>
-                                                            <a href="#">Sunglasses
-                                                                <span class="header__label">New </span>
-                                                            </a>
-                                                        </li>
-                                                        <li><a href="#">Jewelry </a></li>
-                                                        <li><a href="#">Watches </a></li>
-                                                        <li><a href="#">Mobile </a></li>
-
-                                                    </ul>
-                                                </li>
-
-
-
-                                                <li class="mega__menu__li">
-                                                    <a class='menu__title' href='categories.html'>Footwear </a>
-                                                    <ul>
-
-                                                        <li><a href="#">Flats & Loafers </a></li>
-                                                        <li><a href="#">Heels & Pumps </a></li>
-                                                        <li><a href="#">Sneakers & Athletic </a></li>
-                                                        <li><a href="#">Dress Shoes </a></li>
-                                                        <li><a href="#">Casual Shoes </a></li>
-                                                        <li><a href="#">Boots & Chukkas </a></li>
-                                                        <li><a href="#">Sandals & Slides </a></li>
-                                                        <li><a href="#">Pumps & Slides </a></li>
-
-                                                    </ul>
-                                                </li>
-
-                                            </ul> --}}
-
-                                        </li>
+                                        <li><a href='{{url('/')}}'>Home</a></li>
 
                                         <li class="position-static">
-                                            <a class='headerarea__has__dropdown' href='#'>Categories
-                                                {{-- <span class="header__label hot__color">Hot </span> --}}
-                                            </a>
+                                            <a class='headerarea__has__dropdown' href='#'>Categories</a>
 
                                             <ul class="headerarea__submenu headerarea__megamenu">
                                                 @foreach ($categories as $category)
@@ -278,43 +185,12 @@
 
                                         </li>
 
-                                        <li><a href='about.html'>Shop By Product </a> </li>
+                                        <li><a href='/'>Shop By Brand </a> </li>
                                         <li><a href='{{ route('trackOrder') }}'>Track Order </a> </li>
 
                                         <li><a href='{{ route('contact') }}'>Contact Us </a> </li>
 
-                                        {{-- <li><a href='about.html'>About </a> </li>
-
-
-                                        <li><a class='headerarea__has__dropdown' href='blog.html'>Blog
-
-                                            </a>
-                                            <ul class="headerarea__submenu">
-                                                <li><a href='blog-details.html'>Blog-Details </a></li>
-                                            </ul>
-
-
-                                        </li>
-
                                       
-
-
-                                        <li><a class="headerarea__has__dropdown" href="#">Pages
-                                            </a>
-
-                                            <ul class="headerarea__submenu">
-                                                <li><a href='about.html'>About </a></li>
-                                                <li><a href='contact.html'>Contact </a></li>
-                                                <li><a href='service.html'>Service </a></li>
-                                                <li><a href='faq.html'>FAQ </a></li>
-                                                <li><a href='wishlist.html'>Wishlist </a></li>
-                                                <li><a href='cart.html'>Cart </a></li>
-                                                <li><a href='categories.html'>Categories </a></li>
-                                                <li><a href='checkout.html'>Checkout </a></li>
-                                                <li><a href="https://themeforest.net/user/marino-themes">Purchase Now
-                                                    </a></li>
-                                            </ul>
-                                        </li> --}}
                                     </ul>
                                 </nav>
                             </div>
@@ -327,51 +203,7 @@
                             <div class="headerarea__right">
 
                                 <ul class="headerarea__right__nav">
-                                    {{-- <li class="disclosure__button">
-                                        <div class="disclosure__button__language cursor__pointer">
-                                            __ (USD $) <i class="fa fa-angle-down"></i>
-                                        </div>
-                                        <div class="disclosure__button__language__inner">
-                                            <ul>
-                                                <li class="active">
-                                                    <a href="#">Afghan (AFN ؋)
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"> Ålann (EUR €)
-
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"> Albania (ALL L) </a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="#"> Albania (ALL L) </a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="#"> Albania (ALL L) </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"> Afghan (AFN ؋)
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"> Islands (EUR €)
-
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"> Albania (ALL L) </a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="#"> Albania (ALL L) </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li> --}}
+                                    
                                     <li>
                                         <div class="headerarea__search cursor__pointer">
 
@@ -579,96 +411,10 @@
                             <nav>
                                 <ul class="mobile-menu">
                                     <li class="menu-item-has-children"><a href='{{url('/')}}'>Home </a>
-                                        <ul class="dropdown">
-                                            <li><a href='index.html'>Fashion 1 </a></li>
-                                            <li><a href='home-2.html'>Fashion 2 </a></li>
-                                            <li><a href='home-3.html'>Fashion 3 </a></li>
-                                            <li><a href='home-4.html'>Beauty </a></li>
-                                            <li><a href='home-5.html'>Jewelry </a></li>
-                                            <li><a href='home-6.html'>T-Shirt </a></li>
-                                            <li><a href='home-7.html'>Electronics </a></li>
-                                            <li><a href='home-8.html'>Single Product </a></li>
-                                            <li><a href='home-9-dark.html'>Home Dark </a></li>
-                                        </ul>
+                                   
                                     </li>
 
-                                    <li class="menu-item-has-children"><a href='shop.html'>Shop </a>
-
-                                        <ul class="dropdown">
-                                            <li class="menu-item-has-children">
-                                                <a class='menu__title' href='categories.html'>Women's Fashion </a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Dresses </a></li>
-                                                    <li><a href="#">Tops & Blouses </a></li>
-                                                    <li><a href="#">Sweaters & Cardigans </a></li>
-                                                    <li><a href="#">Jackets & Coats </a></li>
-                                                    <li><a href="#">Pants & Jeans </a></li>
-                                                    <li><a href="#">Skirts </a></li>
-                                                    <li><a href="#">Active wear </a></li>
-                                                    <li><a href="#">Lingerie & Sleepwear </a></li>
-                                                </ul>
-                                            </li>
-
-
-                                            <li class="menu-item-has-children">
-                                                <a class='menu__title' href='categories.html'>Men's Fashion </a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Shirts </a></li>
-                                                    <li>
-                                                        <a href="#">T-Shirts & Polos
-                                                            <span class="header__label hot__color">Hot </span>
-                                                        </a>
-                                                    </li>
-                                                    <li><a href="#">Sweaters & Hoodies </a></li>
-                                                    <li><a href="#">Jackets & Blazers </a></li>
-                                                    <li><a href="#">Pants & Chinos </a></li>
-                                                    <li><a href="#">Jeans </a></li>
-                                                    <li><a href="#">Suits & Formal wear </a></li>
-                                                    <li><a href="#">Active wear </a></li>
-                                                </ul>
-                                            </li>
-
-
-                                            <li class="menu-item-has-children">
-                                                <a class='menu__title' href='categories.html'>Accessories </a>
-                                                <ul class="dropdown">
-
-                                                    <li><a href="#">Bags & Purses </a></li>
-                                                    <li><a href="#">Hats & Caps </a></li>
-                                                    <li><a href="#">Scarves & Shawls </a></li>
-                                                    <li><a href="#">Belts & Suspenders </a></li>
-                                                    <li>
-                                                        <a href="#">Sunglasses
-                                                            <span class="header__label">New </span>
-                                                        </a>
-                                                    </li>
-                                                    <li><a href="#">Jewelry </a></li>
-                                                    <li><a href="#">Watches </a></li>
-                                                    <li><a href="#">Mobile </a></li>
-
-                                                </ul>
-                                            </li>
-
-                                            <li class="menu-item-has-children">
-                                                <a class='menu__title' href='categories.html'>Footwear </a>
-                                                <ul class="dropdown">
-
-                                                    <li><a href="#">Flats & Loafers </a></li>
-                                                    <li><a href="#">Heels & Pumps </a></li>
-                                                    <li><a href="#">Sneakers & Athletic </a></li>
-                                                    <li><a href="#">Dress Shoes </a></li>
-                                                    <li><a href="#">Casual Shoes </a></li>
-                                                    <li><a href="#">Boots & Chukkas </a></li>
-                                                    <li><a href="#">Sandals & Slides </a></li>
-                                                    <li><a href="#">Pumps & Slides </a></li>
-
-                                                </ul>
-                                            </li>
-
-                                        </ul>
-
-
-                                    </li>
+                                    <li class="menu-item-has-children"><a href='#'>Category </a></li>
 
                                     <li class="menu-item-has-children"><a href='categories.html'>Categories </a>
                                         <ul class="dropdown">
@@ -780,23 +526,12 @@
 
                                         </ul>
                                     </li>
-                                    <li><a href='about.html'>About </a>
-                                    </li>
 
-                                    <li class="menu-item-has-children"><a href='blog.html'>Pages </a>
-                                        <ul class="dropdown">
-                                            <li><a href='about.html'>About </a></li>
-                                            <li><a href='contact.html'>Contact </a></li>
-                                            <li><a href='service.html'>Service </a></li>
-                                            <li><a href='faq.html'>FAQ </a></li>
-                                            <li><a href='wishlist.html'>Wishlist </a></li>
-                                            <li><a href='cart.html'>Cart </a></li>
-                                            <li><a href='categories.html'>Categories </a></li>
-                                            <li><a href='checkout.html'>Checkout </a></li>
-                                            <li><a href="https://themeforest.net/user/marino-themes">Purchase Now </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+
+                                    <li><a href='{{ route('trackOrder') }}'>Track Order </a> </li>
+
+                                    <li><a href='{{ route('contact') }}'>Contact Us </a> </li>
+
                                 </ul>
                             </nav>
 

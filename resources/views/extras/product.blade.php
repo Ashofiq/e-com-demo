@@ -1,3 +1,23 @@
+<style>
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+    
+    @media (max-width: 768px) {
+        .product-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .product-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+</style>
+    
 <div class="best__selling sp_bottom_80">
     <div class="container">
         <div class="row">
@@ -10,7 +30,7 @@
 
         <div class="tab-content " id="myTabContent">
             <div class="tab-pane fade active show" id="projects__one" role="tabpanel" aria-labelledby="projects__one">
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                <div class="product-grid">
                     @foreach ($products['data'] as $product)
                         <div style="border: 1px solid #eee; border-radius: 10px; overflow: hidden; font-family: Arial, sans-serif; background: #fff;">
                             <a href="{{route('product.details', $product['slug'])}}" style="display: block; padding: 10px;">
@@ -62,9 +82,3 @@
     
     </div>
 </div>
-
-<script>
-    
-    
-
-</script>
