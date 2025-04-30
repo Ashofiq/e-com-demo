@@ -103,6 +103,24 @@ class WebsiteController extends Controller
     function register() {
         return view('customer.register');
     }
+
+    public function login()
+    {
+        return view('customer.login');
+    }
+
+    function loginCustomer(Request $request) {
+        $request->validate([
+          
+           'phone' => 'required', 
+           'password' => 'required|string', 
+       ]);
+
+       $response = Http::withHeaders(['token' => $this->token])
+       ->post($this->base_url.'login', $request->all());
+       return $response->json()['data']; 
+      
+   }
     
     function registerCustomer(Request $request) {
         $request->validate([

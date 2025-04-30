@@ -23,7 +23,7 @@ Route::get('track-order', [WebsiteController::class, 'trackOrder'])->name('track
 // CustomerAuthController
 Route::get('/login',[WebsiteController::class,'login'])->name('login');
 Route::get('/register',[WebsiteController::class,'register'])->name('register');
-// Route::post('/login-check',[CustomerAuthController::class,'loginCheck'])->name('login-check');
+Route::post('/login',[WebsiteController::class,'loginCustomer'])->name('login.customer');
 Route::post('/register',[WebsiteController::class,'registerCustomer'])->name('new.customer');
 Route::get('/customer-logout',[CustomerAuthController::class,'logout'])->name('customer-logout');
 
