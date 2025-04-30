@@ -25,17 +25,17 @@ Route::get('/login',[WebsiteController::class,'login'])->name('login');
 Route::get('/register',[WebsiteController::class,'register'])->name('register');
 Route::post('/login',[WebsiteController::class,'loginCustomer'])->name('login.customer');
 Route::post('/register',[WebsiteController::class,'registerCustomer'])->name('new.customer');
-Route::get('/customer-logout',[CustomerAuthController::class,'logout'])->name('customer-logout');
 
 
 
+Route::middleware('auth.session')->group(function () {
+    Route::get('/logout',[WebsiteController::class,'logout'])->name('customer.logout');
+    Route::get('/my-dashboard',[WebsiteController::class,'dashboard'])->name('customer.dashboard');
+    Route::get('/show-customer-order/{id}',[WebsiteController::class,'showCustomerOrder'])->name('show-customer-order');
+    Route::get('/customer/invoice-show/{id}', [WebsiteController::class,'showCustomerInvoice'])->name('customer-invoice-show');
+    Route::get('/customer/invoice-download/{id}', [WebsiteController::class,'showCustomerDownload'])->name('customer-invoice-download');
+    Route::post('/editCustomer',[WebsiteController::class,'editCustomer'])->name('editCustomer');
+});
 
-    Route::get('/my-dashboard',[CustomerAuthController::class,'dashboard'])->name('customer.dashboard');
-    // CustomerAuthController New Route
-    Route::get('/show-customer-order/{id}',[CustomerAuthController::class,'showCustomerOrder'])->name('show-customer-order');
-    Route::get('/customer/invoice-show/{id}', [CustomerAuthController::class,'showCustomerInvoice'])->name('customer-invoice-show');
-    Route::get('/customer/invoice-download/{id}', [CustomerAuthController::class,'showCustomerDownload'])->name('customer-invoice-download');
-    Route::post('/editCustomer',[CustomerAuthController::class,'editCustomer'])->name('editCustomer');
-
-
+  
 
