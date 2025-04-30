@@ -29,7 +29,7 @@ class CustomerAuthController extends Controller
     public function loginCheck(Request $request)
     {
         $request->validate([
-            'email' => 'required|string',
+            'phone' => 'required|string',
             'password' => 'required|string',
         ]);
     

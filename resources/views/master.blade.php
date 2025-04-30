@@ -220,7 +220,7 @@
                                     </li>
 
 
-                                    {{-- <li>
+                                    <li>
                                         <div class="setting__wrap cursor__pointer">
                                             <div class="setting__wrap__active">
 
@@ -238,7 +238,7 @@
 
                                             </div>
                                         </div>
-                                    </li> --}}
+                                    </li>
 
                                     <li>
                                         <div class="headermiddle__bar cursor__pointer">
@@ -584,20 +584,18 @@
 
                 <div class="setting__wrap__heading">
                     <h6>
-                        <a href="#">Account </a>
+                        <a href="{{ route('register') }}">Register </a>
                     </h6>
                 </div>
                 <div class="setting__wrap__list__inner">
                     <ul>
                         <li>
-                            <a href='login.html'>Login </a>
+                            <a href='{{ route('login') }}'>Login </a>
                         </li>
                         <li>
-                            <a href='cart.html'>Cart </a>
+                            <a href='cart.html'>Profile </a>
                         </li>
-                        <li>
-                            <a href='wishlist.html'>Wishlist </a>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>

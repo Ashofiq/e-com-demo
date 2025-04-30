@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 
@@ -35,6 +36,9 @@ class WebsiteService
         return (object) $response->json()['data']; 
     }
 
+
+   
+
     function fetchMenu()
     {
         return Cache::remember('menu', now()->addMinutes(1), function () {
@@ -65,4 +69,6 @@ class WebsiteService
             return ['products' => [],'brand'=> []];
         });
     }
+
+   
 }

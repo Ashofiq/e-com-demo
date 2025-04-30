@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\WebsiteService;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 
 class WebsiteController extends Controller
 {
@@ -98,11 +100,69 @@ class WebsiteController extends Controller
         $brand = $data['brand'];
         return view('pages.brand', compact('products', 'brand'));
     }
+
+
+    function register() {
+        return view('customer.register');
+    }
+
+    public function login()
+    {
+        return view('customer.login');
+    }
+
+    function loginCustomer(Request $request) {
+        $request->validate([
+          
+           'phone' => 'required', 
+           'password' => 'required|string', 
+       ]);
     
 
+       $response = Http::withHeaders(['token' => $this->token])
+       ->post($this->base_url.'login', $request->all());
+       $data = $response->json()['data']; 
+       if ($data == 1) {
+        session(['user_logged_in' => true]);
+        return response()->json(['message' => 'Login successful']);
+        } else {
+            return response()->json(['message' => 'Incorrect phone number or password'], 401);
+        }
+    }
+    
+ 
+      
+   
+    
+    function registerCustomer(Request $request) {
+        $request->validate([
+           'name' => 'required|string|max:255',
+           'email' => 'required|email|unique:users,email',
+           'phone' => 'required', 
+           'password' => 'required|min:6|confirmed',
+       ]);
 
+       $response = Http::withHeaders(['token' => $this->token])
+       ->post($this->base_url.'register', $request->all());
+       return $response->json()['data']; 
+      
+   }
+
+
+   public function logout(Request $request)
+   {
+       $request->session()->flush(); 
+       return redirect('/login');
+   }
     function products() {
         return view('pages.products');
+    }
+
+    function brands() {
+        $brands = Cache::remember('brand', now()->addMinutes(1), function () {
+            return $this->fetchBrand();
+        });
+        return view('pages.brand-details',compact('brands'));
     }
 
     function checkout() {
