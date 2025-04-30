@@ -301,7 +301,7 @@
                     </div>
                     <div class="col-sm-4 col-5">
                         <div class="mobile-logo">
-                            <a class="logo__mobile" href="#"><img src="{{asset('/')}}frontend/img/logo/logo__1.png"
+                            <a class="logo__mobile" href="{{ url('/') }}"><img src="{{$config->logo}}"
                                     alt="logo" /></a>
                         </div>
                     </div>
@@ -394,7 +394,7 @@
 
                     <div class="mobile__logo">
                         <a href='index.html'>
-                            <img src="{{ $config->logo }}" alt="Logo" />
+                            <img src="{{ $config->logo }}" height="100px" alt="Logo" />
                         </a>
                     </div>
 
@@ -414,116 +414,23 @@
                                    
                                     </li>
 
-                                    <li class="menu-item-has-children"><a href='#'>Category </a></li>
-
-                                    <li class="menu-item-has-children"><a href='categories.html'>Categories </a>
+                                    <li class="menu-item-has-children"><a href='#'>Categories </a>
                                         <ul class="dropdown">
+                                            @foreach ($categories as $category)
 
                                             <li class="menu-item-has-children">
-                                                <a class='menu__title' href='categories.html'>Featured Product </a>
+                                                <a class='menu__title' href='{{route('category', $category['slug'])}}'>{{$category['name']}} </a>
                                                 <ul class="dropdown">
                                                     <li>
-                                                        <a href='categories.html'>
+                                                        <a href='{{route('category', $category['slug'])}}'>
                                                             <img class="img-fluid"
-                                                                src="{{asset('/')}}frontend/img/collection/collection__1.png"
+                                                                src="{{ $category['image'] }}"
                                                                 alt="Collection" />
                                                         </a>
                                                     </li>
                                                 </ul>
                                             </li>
-
-                                            <li class="menu-item-has-children">
-                                                <a class='menu__title' href='categories.html'>New Arrivals </a>
-                                                <ul class="dropdown">
-                                                    <li>
-                                                        <a href='categories.html'>
-                                                            <img class="img-fluid"
-                                                                src="{{asset('/')}}frontend/img/collection/collection__2.png"
-                                                                alt="Collection" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-                                            <li class="menu-item-has-children">
-                                                <a class='menu__title' href='categories.html'>Summer Styles </a>
-                                                <ul class="dropdown">
-                                                    <li>
-                                                        <a href='categories.html'>
-                                                            <img class="img-fluid"
-                                                                src="{{asset('/')}}frontend/img/collection/collection__3.png"
-                                                                alt="Collection" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-                                            <li class="menu-item-has-children">
-                                                <a class='menu__title' href='categories.html'>Winter Fashion </a>
-                                                <ul class="dropdown">
-                                                    <li>
-                                                        <a href='categories.html'>
-                                                            <img class="img-fluid"
-                                                                src="{{asset('/')}}frontend/img/collection/collection__4.png"
-                                                                alt="Collection" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-                                            <li class="menu-item-has-children">
-                                                <a class='menu__title' href='categories.html'>Accessories </a>
-                                                <ul class="dropdown">
-                                                    <li>
-                                                        <a href='categories.html'>
-                                                            <img class="img-fluid"
-                                                                src="{{asset('/')}}frontend/img/collection/collection__5.png"
-                                                                alt="Collection" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-                                            <li class="menu-item-has-children">
-                                                <a class='menu__title' href='categories.html'>Footwear </a>
-                                                <ul class="dropdown">
-                                                    <li>
-                                                        <a href='categories.html'>
-                                                            <img class="img-fluid"
-                                                                src="{{asset('/')}}frontend/img/collection/collection__6.png"
-                                                                alt="Collection" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-                                            <li class="menu-item-has-children">
-                                                <a class='menu__title' href='categories.html'>Men </a>
-                                                <ul class="dropdown">
-                                                    <li>
-                                                        <a href='categories.html'>
-                                                            <img class="img-fluid"
-                                                                src="{{asset('/')}}frontend/img/collection/collection__7.png"
-                                                                alt="Collection" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-                                            <li class="menu-item-has-children">
-                                                <a class='menu__title' href='categories.html'>Women </a>
-                                                <ul class="dropdown">
-                                                    <li>
-                                                        <a href='categories.html'>
-                                                            <img class="img-fluid"
-                                                                src="{{asset('/')}}frontend/img/collection/collection__8.png"
-                                                                alt="Collection" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-
+                                            @endforeach
                                         </ul>
                                     </li>
 
@@ -540,24 +447,15 @@
 
                     </div>
                     <div class="mobile-curr-lang-wrap">
-                        <div class="single-mobile-curr-lang">
-                            <a class="mobile-language-active" href="#">Language <i class="fa fa-angle-down"></i></a>
-                            <div class="lang-curr-dropdown lang-dropdown-active">
-                                <ul>
-                                    <li><a href="#">English (US) </a></li>
-                                    <li><a href="#">English (UK) </a></li>
-                                    <li><a href="#">Spanish </a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        
 
                         <div class="single-mobile-curr-lang">
                             <a class="mobile-account-active" href="#">My Account <i class="fa fa-angle-down"></i></a>
                             <div class="lang-curr-dropdown account-dropdown-active">
                                 <ul>
-                                    <li><a href='login.html'>Login </a></li>
-                                    <li><a href='register.html'>Creat Account </a></li>
-                                    <li><a href="#">My Account </a></li>
+                                    <li><a href='{{route('login')}}'>Login </a></li>
+                                    <li><a href='{{route('register')}}'>Creat Account </a></li>
+                                    <li><a href="{{route('customer.dashboard')}}">My Account </a></li>
                                 </ul>
                             </div>
                         </div>
@@ -592,9 +490,9 @@
                         <li>
                             <a href='{{ route('login') }}'>Login </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href='cart.html'>Profile </a>
-                        </li>
+                        </li> --}}
                         
                     </ul>
                 </div>
