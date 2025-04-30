@@ -27,16 +27,12 @@
     
     <section class="section block-may-also-like">
         <div class="container" style="min-height: 400px">
-            <div class="tab-content " id="myTabContent">
+            <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade active show" id="projects__one" role="tabpanel" aria-labelledby="projects__one">
-                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
-            
+                    <div class="product-grid">
                         @foreach ($paginatedProducts['data'] ?? [] as $product)
                             <x-product-card :product="$product"></x-product-card>
                         @endforeach
-                        
-                        
-
                         {{-- {{$paginatedProducts->links()}} --}}
                     </div>
 

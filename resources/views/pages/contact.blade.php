@@ -52,7 +52,7 @@
             <div class="col-xl-4 col-lg-4 col-md-6 col-12">
                 <div class="contactarea__single">
                     <h3>Office Address  </h3>
-                    <p> idsgijdpg </p>
+                    <p> Aftab Nagar Dhaka </p>
                 </div>
             </div>
 
