@@ -16,9 +16,10 @@
         @foreach ($categories as $category)
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 column__custom__class">
           <div class="collection__single__2">
-            <a href="{{ route('category', $category['slug']) }}" class="collection__img__2">
-              <img src="{{ $category['image'] }}" alt="Category: {{ $category['name'] }}" loading="lazy">
-            </a>
+            <a href="{{ route('category', $category['slug']) }}" class="collection__img__2" style="display: block; width: 100%; height: 200px; overflow: hidden; border-radius: 10px;">
+              <img src="{{ $category['image'] }}" alt="Category: {{ $category['name'] }}" loading="lazy"
+                   style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+          </a>
             <div class="collection__text__2" style="text-align: center;">
               <h5 style="margin: 0;">
                 <a href="{{ route('category', $category['slug']) }}" tabindex="0" >

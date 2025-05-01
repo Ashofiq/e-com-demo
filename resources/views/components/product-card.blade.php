@@ -1,6 +1,6 @@
 <div style="border: 1px solid #eee; border-radius: 10px; overflow: hidden; font-family: Arial, sans-serif; background: #fff;">
     <a href="{{route('product.details', $product['slug'])}}" style="display: block; padding: 10px;">
-        <img src="{{$product['image']}}" alt="{{$product['name']}}" style="width: 100%; border-radius: 10px;">
+        <img src="{{$product['image']}}" alt="{{$product['name']}}" style="width: 100%; height:250px; border-radius: 10px;object-fit: cover;">
     </a>
     <div style="padding: 10px;">
         <a href="{{route('product.details', $product['slug'])}}" style="font-size: 16px; font-weight: normal; margin: 0 0 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">
