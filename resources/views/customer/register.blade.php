@@ -41,11 +41,6 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label class="form__label">Email</label>
-                                <input class="common__login__input w-100" type="email" name="email" placeholder="Your Email" required style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; width: 100%; box-sizing: border-box; margin-bottom: 15px;" />
-                            </div>
-
-                            <div class="col-md-6 mb-3">
                                 <label class="form__label">Phone</label>
                                 <input class="common__login__input w-100" type="number" name="phone" placeholder="Phone Number" required style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; width: 100%; box-sizing: border-box; margin-bottom: 15px;" />
                             </div>
@@ -56,8 +51,8 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label class="form__label">Confirm Password</label>
-                                <input class="common__login__input w-100" type="password" name="password_confirmation" placeholder="Re-Enter Password" required style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; width: 100%; box-sizing: border-box; margin-bottom: 15px;" />
+                                <label class="form__label">Address</label>
+                                <input class="common__login__input w-100" type="text" name="address" placeholder="Address" required style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; width: 100%; box-sizing: border-box; margin-bottom: 15px;" />
                             </div>
                         </div>
 
