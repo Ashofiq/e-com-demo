@@ -25,7 +25,17 @@
     </div>
 </div>
 <!-- breadcrumb__end -->
-
+@if(Session::get('message'))
+    <script>
+        Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "{{Session::get('message')['message']}}",
+                showConfirmButton: false,
+                timer: 3000
+            })
+    </script>
+@endif
 <!-- login__section__start -->
 <div class="loginarea d-flex justify-content-center align-items-center" style="min-height: 100vh;">
     <div class="container">

@@ -28,8 +28,65 @@
         color: white;
         background: black;
     }
+
+    .review-card {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+  color: #333;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.user-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.user-details h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.role {
+  font-size: 14px;
+  color: #777;
+}
+
+.stars {
+  color: #f5b301;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.review-text {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
 </style>
 
+    @if(Session::get('message'))
+    <script>
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "{{Session::get('message')}}",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    </script>
+    @endif
     <!-- breadcrumb__start -->
     <div class="breadcrumb">
         <div class="container">
@@ -453,53 +510,92 @@
                 <li class="nav-item" role="presentation">
                   <button class="descriptionarea__link" data-bs-toggle="tab" data-bs-target="#video" type="button" aria-selected="false" role="tab" tabindex="-1">Video </button>
                 </li>
-                {{-- <li class="nav-item" role="presentation">
-                  <button class="descriptionarea__link" data-bs-toggle="tab" data-bs-target="#product__Type" type="button" aria-selected="true" role="tab" tabindex="-1">Product Type </button>
-                </li>
                 <li class="nav-item" role="presentation">
+                  <button class="descriptionarea__link" data-bs-toggle="tab" data-bs-target="#product__Type" type="button" aria-selected="true" role="tab" tabindex="-1">Reviews </button>
+                </li>
+                {{-- <li class="nav-item" role="presentation">
                     <button class="descriptionarea__link" data-bs-toggle="tab" data-bs-target="#delivery__system" type="button" aria-selected="false" role="tab">Delivery system </button>
                   </li> --}}
             </ul>
               <div class="tab-content tab__content__wrapper" id="myTabContent1">
                 <div class="tab-pane fade active show" id="description" role="tabpanel" aria-labelledby="description">  
-                 
                      <p>
                         {{ $product?->description }}
                     </p>
-                   
-       
-            
-            </div>
+                </div>
                 <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video">
                   
                     ...
            
                 </div>
-                {{-- <div class="tab-pane fade " id="product__Type" role="tabpanel" aria-labelledby="product__Type">
-                 
-                        <p>
-                           As opposed __ using 'Content here, content ____', making it look like ________
-                           English. Many desktop __________ packages and web page _______ now use Lorem
-                           _____ as their default model ____, and a search for '_____ ipsum' will uncover
-                           ____ web sites still in _____ infancy. Various versions have _______ over the
-                           years, _________ by accident, sometimes on _______ injected humour and the
-                           like. It is a ____ established fact that a ______ will be distracted by ___
-                           readable content of _ page when looking at ___ layout. The point of _____ Lorem
-                           Ipsum is ____ it has a more-or-less ______ distribution of letters
-                        </p>
-                        <p>
-                           If you ___ going to use a _______ of Lorem Ipsum, you ____ to be sure there
-                           isn't anything embarrassing hidden __ the middle of text. ___ the Lorem Ipsum
-                           __________ on the Internet tend __ repeat predefined chunks as _________, making
-                           this the _____ true generator on the ________. It uses a dictionary __ over 200
-                           Latin _____, combined with a handful __ model sentence structures, to ________
-                           Lorem Ipsum which _____ reasonable. The generated Lorem _____ is therefore
-                           always ____ from repetition, injected humour, __ non-characteristic words etc
-                        </p>
-           
-                 
+                <div class="tab-pane fade " id="product__Type" role="tabpanel" aria-labelledby="product__Type">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="review-container">
+                                @foreach ($product->review as $review)
+                                <div class="review-card">
+                                    {{-- <div class="user-info">
+                                      <img src="https://i.pravatar.cc/100?img=1" class="user-photo">
+                                      <div class="user-details">
+                                        <h3>Jane Doe</h3>
+                                        <p class="role">Product Manager</p>
+                                      </div>
+                                    </div> --}}
+                                   
+                                    <div class="stars">
+                                        @if ($review['rating'] == 1)
+                                            ★
+                                        @elseif($review['rating'] == 2)
+                                        ★★
+                                        @elseif($review['rating'] == 3)
+                                        ★★★
+                                        @elseif($review['rating'] == 4)
+                                        ★★★★
+                                        @elseif($review['rating'] == 5)
+                                        ★★★★★
+                                        @endif
+                                    </div>
+                                    <p class="review-text">
+                                      {{$review['review']}}
+                                    </p>
+                                  </div>
+                                @endforeach
+                              
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            @if (session('user_id'))
+                                <form action="{{route('review')}}" method="POST" class="review-form">
+                                    @csrf
+                                    <label for="rating">Your Rating Of This Product : </label>
+                                    <br>
+                                    <select class="form-control" name="rating" id="rating" required="">
+                                        <option value="5">Perfect </option> 
+                                        <option value="4">Good </option>
+                                        <option value="3">Average </option>
+                                        <option value="2">Not that bad </option>
+                                        <option value="1">Very poor </option>
+                                    </select>
+
+                                    <label for="rating">Comment : </label>
+                                    <br>
+                                    <textarea name="review" cols="30" rows="6" required="" placeholder="Write Your Review Here..." class="form-control" id="review"></textarea>
+                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                    <button type="submit" class="btn btn-dark">Submit Review </button>
+                                </form>
+                            @else
+                                Please Login to review this product. 
+                                <br>
+                                <a href="{{route('login')}}" class="btn btn-success">
+                                    Login 
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                   
                 </div>
-                <div class="tab-pane fade" id="delivery__system" role="tabpanel" aria-labelledby="delivery__system">
+                {{-- <div class="tab-pane fade" id="delivery__system" role="tabpanel" aria-labelledby="delivery__system">
                 
                         <p>
                            As opposed __ using 'Content here, content ____', making it look like ________

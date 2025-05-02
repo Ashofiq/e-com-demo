@@ -121,35 +121,39 @@ class WebsiteController extends Controller
           
            'phone' => 'required', 
            'password' => 'required|string', 
-       ]);
+        ]);
     
 
-       $response = Http::withHeaders(['token' => $this->token])
-       ->post($this->base_url.'login', $request->all());
-       $data = $response->json()['data']; 
-       if ($data == 1) {
-        session(['user_logged_in' => true]);
-        return response()->json(['message' => 'Login successful']);
+        $response = Http::withHeaders(['token' => $this->token])
+            ->post($this->base_url.'login', $request->all());
+        $data = $response->json()['data']; 
+        if ($data) {
+            session(['user_logged_in' => true, 'user_id' => $data['id'],]);
+            return redirect('/my-dashboard');
         } else {
-            return response()->json(['message' => 'Incorrect phone number or password'], 401);
+            return back()->with(['message' => 'Incorrect phone number or password']);
         }
     }
-    
- 
-      
-   
     
     function registerCustomer(Request $request) {
         $request->validate([
            'name' => 'required|string|max:255',
            'phone' => 'required', 
            'password' => 'required|min:6',
-       ]);
+        ]);
 
-       $response = Http::withHeaders(['token' => $this->token])
-       ->post($this->base_url.'register', $request->all());
-       return $response->json()['data']; 
-      
+        $response = Http::withHeaders(['token' => $this->token])
+            ->post($this->base_url.'register', $request->all());
+        $data = $response->json(); 
+        return back()->with('message', $data);
+   }
+
+   function dashboard() {
+        $user_id = session('user_id');
+        $data = Http::withHeaders(['token' => $this->token, 'user_id' => $user_id])
+            ->get($this->base_url.'customer-dashboard')['data'];
+
+        return view('customer.dashboard', compact('data'));
    }
 
 
@@ -210,5 +214,17 @@ class WebsiteController extends Controller
         ->get($this->base_url.'blogs/'.$slug)['data'];
         return view('pages.blogDetails', compact('blog'));
 
+    }
+
+    function review(Request $request) {
+        $data = $request->all();
+        $data['customer_id'] = session('user_id');
+        Http::withHeaders(['token' => $this->token])
+            ->post($this->base_url.'review', $data);
+        return back()->with('message', 'Review successfully');
+    }
+
+    function showCustomerOrder() {
+        
     }
 }

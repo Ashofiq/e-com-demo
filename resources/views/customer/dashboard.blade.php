@@ -10,19 +10,6 @@
 
 @section('main-section')
 
-
-
-<div class="page-header breadcrumb-wrap">
-    <div class="container">
-        <div class="breadcrumb" style="font-size: 14px; margin: 10px 0; color: #555;">
-            <a href="{{ url('/') }}" rel="nofollow" style="text-decoration: none; color: #007bff;">Home</a>
-            <span style="margin: 0 5px; color: #999;">/</span>
-            <span style="color: #555;">Customer</span>
-            <span style="margin: 0 5px; color: #999;">/</span>
-            <span style="color: #555;">Dashboard</span>
-        </div>
-    </div>
-</div>
 <section style="padding-top: 50px; padding-bottom: 50px;">
     <div class="container">
         <div class="row">
@@ -44,17 +31,12 @@
                                 </li>
                             
                                 <li class="nav-item mb-2">
-                                    <a class="nav-link" style="color:#333;" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address">
-                                        <i class="fi-rs-marker" style="margin-right:10px;"></i>My Address
-                                    </a>
-                                </li>
-                                <li class="nav-item mb-2">
                                     <a class="nav-link" style="color:#333;" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail">
                                         <i class="fi-rs-user" style="margin-right:10px;"></i>Account Details
                                     </a>
                                 </li>
                                 <li class="nav-item mt-4">
-                                    <a class="nav-link text-danger" href="{{ route('customer-logout') }}">
+                                    <a class="nav-link text-danger" href="{{ route('customer.logout') }}">
                                         <i class="fi-rs-sign-out" style="margin-right:10px;"></i>Logout
                                     </a>
                                 </li>
@@ -96,27 +78,25 @@
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
-                                                {{-- <tbody>
-                                                    @foreach($orders as $order)
+                                                <tbody>
+                                                    @foreach($data['orders'] as $order)
                                                     <tr>
-                                                        <td>#{{ $order->id }}</td>
-                                                        <td>{{ $order->order_date }}</td>
-                                                        <td>{{ $order->order_status }}</td>
-                                                        <td>Tk. {{ $order->order_total }}</td>
+                                                        <td>#{{ $order['order_no'] }}</td>
+                                                        <td>{{ $order['order_date'] }}</td>
+                                                        <td>{{ $order['status'] }}</td>
+                                                        <td>Tk. {{ $order['total_amount'] }}</td>
                                                         <td>
-                                                            <a href="{{route('show-customer-order', $order->id)}}" class="btn btn-info btn-sm m-1" title="View Detail">
-                                                                <i class="fi-rs-eye"></i>
+                                                            <a href="{{route('show-customer-order', $order['id'])}}" class="btn btn-info btn-sm m-1" title="View Detail">
+                                                                <i class="fa fa-eye"></i>
                                                             </a>
-                                                            <a href="{{route('customer-invoice-show', $order->id)}}" class="btn btn-primary btn-sm m-1" title="Invoice">
-                                                                <i class="fi-rs-info"></i>
-                                                            </a>
-                                                            <a href="{{route('customer-invoice-download', $order->id)}}" target="_blank" class="btn btn-warning btn-sm m-1" title="Download Invoice">
+                                                           
+                                                            <a href="{{route('customer-invoice-download', $order['id'])}}" target="_blank" class="btn btn-warning btn-sm m-1" title="Download Invoice">
                                                                 <i class="fi-rs-download"></i>
                                                             </a>
                                                         </td>
                                                     </tr>
                                                     @endforeach
-                                                </tbody>  --}}
+                                                </tbody> 
                                             </table>
                                         </div>
                                     </div>

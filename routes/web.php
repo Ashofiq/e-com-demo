@@ -18,6 +18,8 @@ Route::post('order', [WebsiteController::class, 'order'])->name('order');
 Route::get('confirm', [WebsiteController::class, 'confirm'])->name('confirm');
 Route::get('track-order', [WebsiteController::class, 'trackOrder'])->name('trackOrder');
 Route::get('blogs/{slug}', [WebsiteController::class, 'blogDetails'])->name('blogDetails');
+Route::post('review', [WebsiteController::class, 'review'])->name('review');
+
 
 // CustomerAuthController
 Route::get('/login',[WebsiteController::class,'login'])->name('login');
