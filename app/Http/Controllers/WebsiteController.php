@@ -34,7 +34,12 @@ class WebsiteController extends Controller
             return $this->fetchSlider();
         });
 
-        return view('pages.home', compact('products', 'config', 'sliders','brands'));
+        $blogs = Cache::remember('blogs', now()->addMinutes(1), function () {
+            $response = Http::withHeaders(['token' => $this->token])->get($this->base_url.'blogs');
+            return $response->json()['data']; 
+        });
+       
+        return view('pages.home', compact('products', 'config', 'sliders','brands', 'blogs'));
     }
 
     private function fetchProduct()
@@ -199,5 +204,12 @@ class WebsiteController extends Controller
            
         }
         return view('pages.trackOrder', ['order' => $order]);
+    }
+
+    function blogDetails($slug) {
+        $blog = Http::withHeaders(['token' => $this->token])
+        ->get($this->base_url.'blogs/'.$slug)['data'];
+        return view('pages.blogDetails', compact('blog'));
+
     }
 }

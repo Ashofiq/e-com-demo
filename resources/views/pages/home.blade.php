@@ -39,7 +39,7 @@
 
 
 <!-- blog__section__start -->
-{{-- <div class="blog sp_top_80 sp_bottom_80">
+<div class="blog sp_top_80 sp_bottom_80">
   <div class="container">
     <div class="row">
         <div class="col-xl-12">
@@ -49,141 +49,35 @@
         </div>
     </div>
     <div class="row row__custom__class blog__slider__active slider__default__arrow">
+        @foreach ($blogs['data'] as $blog)
+        
         <div class="col-xl-4 column__custom__class">
             <div class="blog__single__wrap">
                 <div class="blog__img">
-                   <a href='blog-details.html'>  <img src="{{asset('/')}}frontend/img/blog/blog-1.jpg" alt="" /></a>
+                   <a href='{{route('blogDetails', $blog['slug'])}}'>  <img src="{{$blog['image']}}" alt="" /></a>
                 </div>
 
                 <div class="blog__meta">
                     <ul>
-                        <li class="blog__date"><i class="far fa-calendar-alt"></i> August 01, 2024 </li>
+                        <li class="blog__date"><i class="far fa-calendar-alt"></i> {{date('F d, Y', strtotime($blog['date']))}} </li>
                     </ul>
                   </div>
 
                   <div class="blog__title">
-                    <h2><a href='blog-details.html' tabindex='0'>A Glimpse into Men's _______ Trends: What's Hot and ____'_ Not </a></h2>
+                    <h2><a href='{{route('blogDetails', $blog['slug'])}}' tabindex='0'>{{$blog['title']}} </a></h2>
                   </div>
 
                   <div class="blog__button">
-                    <a href='blog-details.html' tabindex='0'>Read More </a>
+                    <a href='{{route('blogDetails', $blog['slug'])}}' tabindex='0'>Read More </a>
                   </div>
 
             </div>
         </div>
-        <div class="col-xl-4 column__custom__class">
-            <div class="blog__single__wrap">
-                <div class="blog__img">
-                    <a href='blog-details.html'>  <img src="{{asset('/')}}frontend/img/blog/blog-2.jpg" alt="" /></a>
-                </div>
+        @endforeach
 
-                <div class="blog__meta">
-                    <ul>
-                        <li class="blog__date"><i class="far fa-calendar-alt"></i> August 01, 2024 </li>
-                    </ul>
-                  </div>
-
-                  <div class="blog__title">
-                    <h2><a href='blog-details.html' tabindex='0'>A Glimpse into Men's _______ Trends: What's Hot and ____'_ Not </a></h2>
-                  </div>
-
-                  <div class="blog__button">
-                    <a href='blog-details.html' tabindex='0'>Read More </a>
-                  </div>
-
-            </div>
-        </div>
-        <div class="col-xl-4 column__custom__class">
-            <div class="blog__single__wrap">
-                <div class="blog__img">
-                    <a href='blog-details.html'>  <img src="{{asset('/')}}frontend/img/blog/blog-3.jpg" alt="" /></a>
-                </div>
-
-                <div class="blog__meta">
-                    <ul>
-                        <li class="blog__date"><i class="far fa-calendar-alt"></i> August 01, 2024 </li>
-                    </ul>
-                  </div>
-
-                  <div class="blog__title">
-                    <h2><a href='blog-details.html' tabindex='0'>Fashion Dos and Don'ts _____ Woman Should Know That </a></h2>
-                  </div>
-
-                  <div class="blog__button">
-                    <a href='blog-details.html' tabindex='0'>Read More </a>
-                  </div>
-
-            </div>
-        </div>
-        <div class="col-xl-4 column__custom__class">
-            <div class="blog__single__wrap">
-                <div class="blog__img">
-                    <a href='blog-details.html'>  <img src="{{asset('/')}}frontend/img/blog/blog-4.jpg" alt="" /></a>
-                </div>
-
-                <div class="blog__meta">
-                    <ul>
-                        <li class="blog__date"><i class="far fa-calendar-alt"></i> August 01, 2024 </li>
-                    </ul>
-                  </div>
-
-                  <div class="blog__title">
-                    <h2><a href='blog-details.html' tabindex='0'>A Glimpse into Men's _______ Trends: What's Hot and ____'_ Not </a></h2>
-                  </div>
-
-                  <div class="blog__button">
-                    <a href='blog-details.html' tabindex='0'>Read More </a>
-                  </div>
-
-            </div>
-        </div>
-        <div class="col-xl-4 column__custom__class">
-            <div class="blog__single__wrap">
-                <div class="blog__img">
-                    <a href='blog-details.html'>  <img src="{{asset('/')}}frontend/img/blog/blog-5.jpg" alt="" /></a>
-                </div>
-
-                <div class="blog__meta">
-                    <ul>
-                        <li class="blog__date"><i class="far fa-calendar-alt"></i> August 01, 2024 </li>
-                    </ul>
-                  </div>
-
-                  <div class="blog__title">
-                    <h2><a href='blog-details.html' tabindex='0'>A Glimpse into Men's _______ Trends: What's Hot and ____'_ Not </a></h2>
-                  </div>
-
-                  <div class="blog__button">
-                    <a href='blog-details.html' tabindex='0'>Read More </a>
-                  </div>
-
-            </div>
-        </div>
-        <div class="col-xl-4 column__custom__class">
-            <div class="blog__single__wrap">
-                <div class="blog__img">
-                    <a href='blog-details.html'>  <img src="{{asset('/')}}frontend/img/blog/blog-6.jpg" alt="" /></a>
-                </div>
-
-                <div class="blog__meta">
-                    <ul>
-                        <li class="blog__date"><i class="far fa-calendar-alt"></i> August 01, 2024 </li>
-                    </ul>
-                  </div>
-
-                  <div class="blog__title">
-                    <h2><a href='blog-details.html' tabindex='0'>Fashion Dos and Don'ts _____ Woman Should Know That </a></h2>
-                  </div>
-
-                  <div class="blog__button">
-                    <a href='blog-details.html' tabindex='0'>Read More </a>
-                  </div>
-
-            </div>
-        </div>
     </div>
 </div>
-</div> --}}
+</div>
 <!-- blog__section__start -->
 
 

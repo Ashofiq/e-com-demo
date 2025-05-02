@@ -1,7 +1,7 @@
 @extends('master')
 
-@section('title', $config->company_name .' | Category')
-@section('description', 'Category list')
+@section('title', $config->company_name .' | Brand')
+@section('description', 'Brand list')
 @section('image', $config->logo)
 @section('url', url()->full())
 @section('keywords', 'Ecommerce automation')

@@ -17,8 +17,7 @@ Route::get('contact-us', [WebsiteController::class, 'contactUs'])->name('contact
 Route::post('order', [WebsiteController::class, 'order'])->name('order');
 Route::get('confirm', [WebsiteController::class, 'confirm'])->name('confirm');
 Route::get('track-order', [WebsiteController::class, 'trackOrder'])->name('trackOrder');
-
-
+Route::get('blogs/{slug}', [WebsiteController::class, 'blogDetails'])->name('blogDetails');
 
 // CustomerAuthController
 Route::get('/login',[WebsiteController::class,'login'])->name('login');
