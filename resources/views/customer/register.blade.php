@@ -32,7 +32,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8">
                 <div class="loginarea__wraper" style="border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
-                    <form action="{{ route('register') }}" method="post">
+                    <form action="{{ route('new.customer') }}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-md-6 mb-3">
