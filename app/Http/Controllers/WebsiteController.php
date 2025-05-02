@@ -142,9 +142,9 @@ class WebsiteController extends Controller
     function registerCustomer(Request $request) {
         $request->validate([
            'name' => 'required|string|max:255',
-           'email' => 'required|email|unique:users,email',
+           'email' => 'required|email',
            'phone' => 'required', 
-           'password' => 'required|min:6|confirmed',
+           'password' => 'required|min:6',
        ]);
 
        $response = Http::withHeaders(['token' => $this->token])
