@@ -17,7 +17,7 @@
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 column__custom__class">
           <div class="collection__single__2">
             <a href="{{ route('category', $category['slug']) }}" class="collection__img__2">
-              <img src="{{ $category['image'] }}" alt="Category: {{ $category['name'] }}" loading="lazy">
+              <img src="{{ $category['image'] }}" alt="Category: {{ $category['name'] }}" height="278" loading="lazy">
             </a>
             <div class="collection__text__2" style="text-align: center;">
               <h5 style="margin: 0;">

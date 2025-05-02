@@ -40,6 +40,15 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
+
+        .product-grid img {
+            height: 278px;
+        }
+
+        .mega__menu__image img{
+            height: 100px;
+            widows: 100%;
+        }
         
         @media (max-width: 768px) {
             .product-grid {
@@ -188,7 +197,7 @@
 
                                                             <li>
                                                                 <a href='{{route('category', $category['slug'])}}'>
-                                                                    <img class="img-fluid" src="{{ $category['image'] }}"
+                                                                    <img class="img-fluid" height="200px" src="{{ $category['image'] }}"
                                                                         alt="Collection" />
                                                                 </a>
                                                             </li>

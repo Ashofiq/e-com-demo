@@ -35,7 +35,7 @@
                         @csrf
                         <div class="loginarea__form" style="margin-bottom: 20px;">
                             <label class="form__label" for="phone" style="font-size: 16px; color: #333;">Phone</label>
-                            <input id="phone" name="phone" class="common__login__input" type="number" placeholder="Your username or email" required style="width: 100%; padding: 10px; margin-top: 8px; border-radius: 4px; border: 1px solid #ccc;"/>
+                            <input id="phone" name="phone" class="common__login__input" type="number" placeholder="Your phone no" required style="width: 100%; padding: 10px; margin-top: 8px; border-radius: 4px; border: 1px solid #ccc;"/>
                         </div>
 
                         <div class="loginarea__form" style="margin-bottom: 20px;">
@@ -48,9 +48,9 @@
                                 <input type="checkbox" name="remember" id="login__privacy" />
                                 <label for="login__privacy" style="margin-left: 5px;">Remember Me</label>
                             </div>
-                            <div class="text-end login__form__link">
+                            {{-- <div class="text-end login__form__link">
                                 <a href="#" style="font-size: 14px; color: #007bff; text-decoration: none;">Forgot your password?</a>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="loginarea__button text-center" style="margin-top: 20px;">
