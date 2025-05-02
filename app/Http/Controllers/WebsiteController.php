@@ -142,7 +142,6 @@ class WebsiteController extends Controller
     function registerCustomer(Request $request) {
         $request->validate([
            'name' => 'required|string|max:255',
-           'email' => 'required|email',
            'phone' => 'required', 
            'password' => 'required|min:6',
        ]);
