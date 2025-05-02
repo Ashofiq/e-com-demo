@@ -517,9 +517,12 @@
                         <li>
                             <a href='{{ route('login') }}'>Login </a>
                         </li>
-                        {{-- <li>
-                            <a href='cart.html'>Profile </a>
-                        </li> --}}
+                        @if (session('user_id'))
+                        <li>
+                            <a href='{{route('customer.dashboard')}}'>Profile </a>
+                        </li>
+                        @endif
+                       
                         
                     </ul>
                 </div>

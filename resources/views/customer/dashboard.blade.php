@@ -30,11 +30,7 @@
                                     </a>
                                 </li>
                             
-                                <li class="nav-item mb-2">
-                                    <a class="nav-link" style="color:#333;" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail">
-                                        <i class="fi-rs-user" style="margin-right:10px;"></i>Account Details
-                                    </a>
-                                </li>
+                              
                                 <li class="nav-item mt-4">
                                     <a class="nav-link text-danger" href="{{ route('customer.logout') }}">
                                         <i class="fi-rs-sign-out" style="margin-right:10px;"></i>Logout
