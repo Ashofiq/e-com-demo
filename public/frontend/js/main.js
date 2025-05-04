@@ -838,11 +838,13 @@ $('.collections__slider__active').slick({
 
 
 $('.collections__slider__active__5').slick({
+    autoplay: true,
     infinite: true,
     slidesToShow: 5,
     slidesToScroll: 1,
     dots: false,
-    arrows:false,
+    arrows:true,
+    speed: 200,
     prevArrow:'<span class="prev_class"> <i class="fas fa-chevron-left"></i></span>',
     nextArrow: '<span class="next_class"><i class="fas fa-chevron-right"></i></span>',
     responsive: [{

@@ -47,10 +47,35 @@
   </div>
 </div>
 
-<div class="brand-list">
-  @foreach ($brands as $brand)
-  <a href="{{route('brand-products', $brand['slug'])}}" class="brand-card">
-    <div class="brand-name">{{$brand['name']}}</div>
-  </a>
-  @endforeach
+<div class="category sp_bottom_50">
+  <div class="container">
+    <div class="row">
+      @foreach ($brands as $brand)
+      {{-- <a href="{{route('brand-products', $brand['slug'])}}" class="brand-card">
+        <div class="brand-name">{{$brand['name']}}</div>
+      </a> --}}
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6">
+            <div class="category__single category__single__2">
+                <a href="{{route('brand-products', $brand['slug'])}}" style="text-decoration: none; color: inherit; display: block;"> <!-- Makes entire div clickable -->
+                    <div class="category__img__2" style="
+                        background-color: #FBCA3A;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 150px;
+                        border-radius: 10px;
+                        color: white;
+                        font-weight: bold;
+                        cursor: pointer; /* Changes cursor to indicate clickable */
+                        font-size: 150%;
+                    ">
+                        {{$brand['name']}}
+                    </div>
+                </a>
+            
+            </div>
+        </div>
+      @endforeach
+    </div>
+  </div>
 </div>
