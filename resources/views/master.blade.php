@@ -440,11 +440,11 @@
                                                 <a class='menu__title' href='{{route('category', $category['slug'])}}'>{{$category['name']}} </a>
                                                 <ul class="dropdown">
                                                     <li>
-                                                        <a href='{{route('category', $category['slug'])}}'>
-                                                            <img class="img-fluid"
-                                                                src="{{ $category['image'] }}"
-                                                                alt="Collection" />
+                                                        <a href="{{ route('category', $category['slug']) }}" style="display: block; width: 100%; height: 200px; overflow: hidden; border-radius: 10px;">
+                                                            <img src="{{ $category['image'] }}" alt="Collection"
+                                                                 style="width: 100%; height: 100%;  object-fit: cover; border-radius: 10px;">
                                                         </a>
+                                                        
                                                     </li>
                                                 </ul>
                                             </li>
